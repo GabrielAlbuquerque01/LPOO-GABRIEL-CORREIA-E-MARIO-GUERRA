@@ -1,4 +1,5 @@
 package jogo;
+import java.io.*;
 
 public class MexerPeca extends Tabuleiro{
 	
@@ -82,5 +83,15 @@ public class MexerPeca extends Tabuleiro{
 		super.setTabuleiro(this.matrizPecas);
 	}
 	
+	public void posCorreta() {
+		String[][] matrizCorreta = new String[super.getMatriz()][super.getMatriz()];
+		for(int i = 0; i < super.getMatriz(); i++) {
+			for(int k = 0; k < super.getMatriz(); k++) {
+				if(this.matrizPecas[i][k].equals(matrizCorreta[i][k])) {
+					matrizPecas[i][k] =  matrizPecas[i][k];
+				}
+			}
+		}
+	}
 	
 }
