@@ -71,7 +71,25 @@ public abstract class Tabuleiro {
             System.out.println();
         }
 	}
-	
+	 
+	public String[][] getMatrizCorreta(){
+		String[][] matrizCorreta = new String[this.matriz][this.matriz];
+		String[] listaPecas = new String[this.matriz*this.matriz];
+		int contador = 0;
+		
+		for(int i = 0; i < this.matriz*this.matriz; i++) {
+			listaPecas[i] = "[" + String.valueOf(i + 1) + "]";
+		}
+		listaPecas[listaPecas.length - 1] = "[ ]";
+		
+		for(int i = 0; i < this.matriz; i++) {
+            for(int k = 0; k < this.matriz; k++) {
+                matrizCorreta[i][k] = listaPecas[contador]; //escreve no console enquanto não há interface
+                contador++;
+            }
+        }
+		return matrizCorreta;
+	}
 	
 }
 
