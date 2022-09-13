@@ -8,8 +8,7 @@ import interfaceJogo.GerarTabuleiro;
 import jogo.MexerPeca;
 
 public class TelaJogo {
-	public static void main(String[] args) {
-		  
+	public static void main(String[] args) {  
 	  	MexerPeca tabuleiro = new MexerPeca(3);
 	    SwingUtilities.invokeLater(() -> {
 	      JFrame frame = new JFrame();

@@ -27,6 +27,7 @@ public class GerarTabuleiro extends JPanel{
 	private int dimensao;
 	
 	public GerarTabuleiro(int tam, int dim, int mar, MexerPeca tab) {
+		
 		this.tamanho = tam;
 		this.margem = mar;
 		this.dimensao = dim;
@@ -96,6 +97,7 @@ public class GerarTabuleiro extends JPanel{
 	}
 	
 	private void desenhaMatriz(Graphics2D g) {
+		boolean gameOver = false;
 	    for (int i = 0; i < tabuleiro.getListaPecas().length; i++) {
 	      // conversao do array 1d em 2d
 	      int r = i / tamanho;
@@ -104,6 +106,14 @@ public class GerarTabuleiro extends JPanel{
 	      int x = margem + c * tamanhoPeca;
 	      int y = margem + r * tamanhoPeca;
 	      
+	   // check special case for blank tile
+	      if(tabuleiro.getListaPecas()[i].equals("  ")) {
+	        if (gameOver) {
+	          g.setColor(COR_PECA);
+	          desenhaNumeros(g, "\u2713", x, y);
+	        }
+	        continue;
+	      }
 	      
 	      // colocação das pecas
 	      g.setColor(getForeground());
