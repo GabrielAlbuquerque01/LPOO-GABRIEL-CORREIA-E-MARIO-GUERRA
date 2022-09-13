@@ -36,10 +36,20 @@ public abstract class Tabuleiro {
 	public void preencheArray() { //cria uma lista coms os valores
 		String[] tempArray = new String[this.matriz*this.matriz]; //array temporário que armazena a ordem
 		for(int i = 0; i < this.matriz*this.matriz; i++) {
-			tempArray[i] = "[" + String.valueOf(i + 1) + "]";
+			tempArray[i] = String.valueOf(i + 1);
 		}
 		this.listaPecas = tempArray; 
-		listaPecas[listaPecas.length - 1] = "[ ]";
+		listaPecas[listaPecas.length - 1] = "  ";
+	}
+	
+	public int getVazio() {
+		int pos = 0;
+		for(int i = 0; i < this.listaPecas.length; i++) {
+			if(listaPecas[i].equals("  ")) {
+				pos = i;
+			}
+		}
+		return pos;
 	}
 	
 	
@@ -48,7 +58,7 @@ public abstract class Tabuleiro {
 		String[][] matrizTemp = new String[this.matriz][this.matriz];
         for(int i = 0; i < this.matriz; i++) {
             for(int k = 0; k < this.matriz; k++) {
-                matrizTemp[i][k] = this.listaPecas[contador]; //escreve no console enquanto não há interface
+                matrizTemp[i][k] = this.listaPecas[contador]; 
                 contador++;
             }
         }
@@ -78,9 +88,9 @@ public abstract class Tabuleiro {
 		int contador = 0;
 		
 		for(int i = 0; i < this.matriz*this.matriz; i++) {
-			listaPecas[i] = "[" + String.valueOf(i + 1) + "]";
+			listaPecas[i] = String.valueOf(i + 1);
 		}
-		listaPecas[listaPecas.length - 1] = "[ ]";
+		listaPecas[listaPecas.length - 1] = "  ";
 		
 		for(int i = 0; i < this.matriz; i++) {
             for(int k = 0; k < this.matriz; k++) {
@@ -89,6 +99,20 @@ public abstract class Tabuleiro {
             }
         }
 		return matrizCorreta;
+	}
+	
+	public String[] getListaPecas() {
+		return this.listaPecas;
+	}
+	
+	public void setListaPecas(String[][] matriz) {
+		int contador = 0;
+		for(int i = 0; i < this.matriz; i++) {
+			for(int k = 0; k < this.matriz; k++) {
+				this.listaPecas[contador] = matriz[i][k];
+				contador++;
+			}
+		}
 	}
 	
 }

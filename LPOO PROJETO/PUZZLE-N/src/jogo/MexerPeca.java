@@ -21,7 +21,7 @@ public class MexerPeca extends Tabuleiro{
 		int coluna = 0;
 		for(int i = 0; i != this.matrizPecas.length; i++) {
 			for(int k = 0; k != this.matrizPecas.length; k++) {
-				if(this.matrizPecas[i][k] == "[ ]") {
+				if(this.matrizPecas[i][k] == "  ") {
 					linha = i;
 					coluna = k;
 				}
@@ -42,6 +42,7 @@ public class MexerPeca extends Tabuleiro{
 			this.matrizPecas[linha][coluna - 1] = this.vazio;
 		}
 		super.setTabuleiro(this.matrizPecas);
+		super.setListaPecas(matrizPecas);
 	}
 	
 	
@@ -55,6 +56,7 @@ public class MexerPeca extends Tabuleiro{
 			this.matrizPecas[linha][coluna + 1] = this.vazio;
 		}
 		super.setTabuleiro(this.matrizPecas);
+		super.setListaPecas(matrizPecas);
 	}
 	
 	
@@ -68,6 +70,7 @@ public class MexerPeca extends Tabuleiro{
 			this.matrizPecas[linha - 1][coluna] = this.vazio;
 		}
 		super.setTabuleiro(this.matrizPecas);
+		super.setListaPecas(matrizPecas);
 	}
 	
 	
@@ -81,6 +84,7 @@ public class MexerPeca extends Tabuleiro{
 			this.matrizPecas[linha + 1][coluna] = this.vazio;
 		}
 		super.setTabuleiro(this.matrizPecas);
+		super.setListaPecas(matrizPecas);
 	}
 	
 	public void posCorreta() {
