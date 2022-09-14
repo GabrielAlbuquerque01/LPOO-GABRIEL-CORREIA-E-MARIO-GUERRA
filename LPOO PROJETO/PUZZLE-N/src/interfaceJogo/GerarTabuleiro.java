@@ -97,7 +97,7 @@ public class GerarTabuleiro extends JPanel{
 	}
 	
 	private void desenhaMatriz(Graphics2D g) {
-		boolean gameOver = false;
+		boolean gameOver = false; //falta o método que verifica fim do jogo
 	    for (int i = 0; i < tabuleiro.getListaPecas().length; i++) {
 	      // conversao do array 1d em 2d
 	      int r = i / tamanho;
@@ -106,11 +106,11 @@ public class GerarTabuleiro extends JPanel{
 	      int x = margem + c * tamanhoPeca;
 	      int y = margem + r * tamanhoPeca;
 	      
-	   // check special case for blank tile
+	   // checa a peça vazia para determinar se o jogo terminou
 	      if(tabuleiro.getListaPecas()[i].equals("  ")) {
-	        if (gameOver) {
+	        if (gameOver) { 
 	          g.setColor(COR_PECA);
-	          desenhaNumeros(g, "\u2713", x, y);
+	          desenhaNumeros(g, "\u2715", x, y);
 	        }
 	        continue;
 	      }
