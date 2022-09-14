@@ -87,15 +87,21 @@ public class MexerPeca extends Tabuleiro{
 		super.setListaPecas(matrizPecas);
 	}
 	
-	public void posCorreta() {
+	public boolean terminaJogo() {
+		int contador = 0;
 		String[][] matrizCorreta = super.getMatrizCorreta();
 		for(int i = 0; i < super.getMatriz(); i++) {
 			for(int k = 0; k < super.getMatriz(); k++) {
 				if(this.matrizPecas[i][k].equals(matrizCorreta[i][k])) {
-					matrizPecas[i][k] =  "I" + matrizPecas[i][k]; //MEDIDA DE DESTAQUE PROVISÓRIA
-					//NA INTERFACE GRAFICA O BOTÃO MUDARÁ DE COR
+					contador++;
 				}
 			}
+		}
+		if(contador == super.getMatriz()*super.getMatriz()) {
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 	

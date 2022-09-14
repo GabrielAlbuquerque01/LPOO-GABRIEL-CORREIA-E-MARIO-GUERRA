@@ -13,7 +13,7 @@ public abstract class Tabuleiro {
 	
 	
 	public void setMatriz(int matriz) { //armazena o valor da matriz
-		if(matriz == 3 || matriz == 4) {
+		if(matriz == 2 ||matriz == 3 || matriz == 4) {
 			this.matriz = matriz;
 		}
 	}

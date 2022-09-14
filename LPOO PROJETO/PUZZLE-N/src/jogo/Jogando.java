@@ -8,7 +8,6 @@ public class Jogando {
 		putDados();
 		tab.mexeBaixo();
 		System.out.println("    ");
-		tab.posCorreta();
 		tab.exibeMatriz();
 	}
 	

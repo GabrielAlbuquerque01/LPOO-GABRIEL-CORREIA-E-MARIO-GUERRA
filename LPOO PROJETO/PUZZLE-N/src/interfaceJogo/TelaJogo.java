@@ -17,7 +17,7 @@ public class TelaJogo {
 	      frame.setResizable(false);
 	      frame.add(new GerarTabuleiro(tabuleiro.getMatriz(), 600, 60, tabuleiro), BorderLayout.CENTER);
 	      frame.pack();
-	      // center on the screen
+	      // posição no centro da tela
 	      frame.setLocationRelativeTo(null);
 	      frame.setVisible(true);
 	    });

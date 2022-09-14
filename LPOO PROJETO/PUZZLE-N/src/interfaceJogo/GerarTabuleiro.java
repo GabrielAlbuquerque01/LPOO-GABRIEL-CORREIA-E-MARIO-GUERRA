@@ -1,5 +1,4 @@
 package interfaceJogo;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -9,22 +8,20 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Random;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import jogo.*;
 
 public class GerarTabuleiro extends JPanel{
 	
 	private MexerPeca tabuleiro;
 	private static final Color COR_PECA = new Color(50, 0, 50);
+	private static final Color COR_PECA_CORRETA = new Color(25, 150, 25);
 	private int tamanho;
 	private int tamanhoPeca;
 	private int margem;
 	private int tamanhoMatriz; 
 	private int dimensao;
+	private boolean fimDeJogo;
 	
 	public GerarTabuleiro(int tam, int dim, int mar, MexerPeca tab) {
 		
@@ -42,13 +39,13 @@ public class GerarTabuleiro extends JPanel{
 	    setForeground(COR_PECA);
 	    setFont(new Font("SansSerif", Font.BOLD, 60));
 	    
+	    fimDeJogo = false;
+	    
 	    //comunicação com os cliques do usuário
 	    addMouseListener(new MouseAdapter() {
 	        @Override
 	        public void mousePressed(MouseEvent e) {
-	          int jogadas = 0;
-	          boolean gameOver = false;
-	          if (gameOver) {
+	          if (fimDeJogo) {
 	            novoJogo();
 	          } else {
 	        	  
@@ -81,6 +78,9 @@ public class GerarTabuleiro extends JPanel{
 	            else if(xClique == xVazio && yClique == yVazio + 1) {
 	            	tabuleiro.mexeEsquerda();
 	            }
+	            
+	            fimDeJogo = tabuleiro.terminaJogo();
+	            
 	          }
 	          
 	          // recoloca o painel na tela
@@ -91,13 +91,13 @@ public class GerarTabuleiro extends JPanel{
 	}
 	
 	private void novoJogo() {
+		fimDeJogo = false;
 		tabuleiro.preencheArray();
 		tabuleiro.embaralhaArray();
 		tabuleiro.preencheMatriz();
 	}
 	
 	private void desenhaMatriz(Graphics2D g) {
-		boolean gameOver = false; //falta o método que verifica fim do jogo
 	    for (int i = 0; i < tabuleiro.getListaPecas().length; i++) {
 	      // conversao do array 1d em 2d
 	      int r = i / tamanho;
@@ -108,8 +108,8 @@ public class GerarTabuleiro extends JPanel{
 	      
 	   // checa a peça vazia para determinar se o jogo terminou
 	      if(tabuleiro.getListaPecas()[i].equals("  ")) {
-	        if (gameOver) { 
-	          g.setColor(COR_PECA);
+	        if (fimDeJogo) { 
+	          g.setColor(Color.white);
 	          desenhaNumeros(g, "\u2715", x, y);
 	        }
 	        continue;
@@ -117,7 +117,7 @@ public class GerarTabuleiro extends JPanel{
 	      
 	      // colocação das pecas
 	      if(tabuleiro.getListaPecas()[i].equals(tabuleiro.getListaCorreta()[i])) {
-	    	  g.setColor(Color.blue); //destaca as pecas na posição correta
+	    	  g.setColor(COR_PECA_CORRETA); //destaca as pecas na posição correta
 	      }
 	      else {
 	    	  g.setColor(getForeground());
@@ -131,7 +131,15 @@ public class GerarTabuleiro extends JPanel{
 	    }
 	  }
 
-	  
+	  private void mensagemFimJogo(Graphics2D g) {
+	    if (fimDeJogo) {
+	      g.setFont(getFont().deriveFont(Font.BOLD, 18));
+	      g.setColor(Color.WHITE);
+	      String s = "PARABÉNSS VC GANHOU O JOGO";
+	      g.drawString(s, (getWidth() - g.getFontMetrics().stringWidth(s)) / 2,
+	          getHeight() - margem);
+	    }
+	  }
 	  private void desenhaNumeros(Graphics2D g, String s, int x, int y) {
 	    FontMetrics fm = g.getFontMetrics();
 	    int ascendente = fm.getAscent();
@@ -146,5 +154,6 @@ public class GerarTabuleiro extends JPanel{
 	    Graphics2D g2D = (Graphics2D) g;
 	    g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 	    desenhaMatriz(g2D);
+	    mensagemFimJogo(g2D);
 	  }
 }
