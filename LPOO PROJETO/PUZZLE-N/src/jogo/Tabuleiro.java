@@ -105,6 +105,17 @@ public abstract class Tabuleiro {
 		return this.listaPecas;
 	}
 	
+	public String[] getListaCorreta() {
+		String[] listaPecas = new String[this.matriz*this.matriz];
+		int contador = 0;
+		
+		for(int i = 0; i < this.matriz*this.matriz; i++) {
+			listaPecas[i] = String.valueOf(i + 1);
+		}
+		listaPecas[listaPecas.length - 1] = "  ";
+		return listaPecas;
+	}
+	
 	public void setListaPecas(String[][] matriz) {
 		int contador = 0;
 		for(int i = 0; i < this.matriz; i++) {

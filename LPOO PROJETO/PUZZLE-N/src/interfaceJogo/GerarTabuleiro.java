@@ -116,7 +116,12 @@ public class GerarTabuleiro extends JPanel{
 	      }
 	      
 	      // colocação das pecas
-	      g.setColor(getForeground());
+	      if(tabuleiro.getListaPecas()[i].equals(tabuleiro.getListaCorreta()[i])) {
+	    	  g.setColor(Color.blue); //destaca as pecas na posição correta
+	      }
+	      else {
+	    	  g.setColor(getForeground());
+	      }
 	      g.fillRoundRect(x, y, tamanhoPeca, tamanhoPeca, 80, 80);
 	      g.setColor(Color.BLACK);
 	      g.drawRoundRect(x, y, tamanhoPeca, tamanhoPeca, 80, 80);
