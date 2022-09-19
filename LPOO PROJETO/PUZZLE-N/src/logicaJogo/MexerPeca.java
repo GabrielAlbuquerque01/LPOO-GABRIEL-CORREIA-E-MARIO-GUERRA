@@ -93,8 +93,10 @@ public class MexerPeca extends Tabuleiro{
 		String[][] matrizCorreta = super.getMatrizCorreta();
 		for(int i = 0; i < super.getMatriz(); i++) {
 			for(int k = 0; k < super.getMatriz(); k++) {
-				if(this.matrizPecas[i][k].equals(matrizCorreta[i][k])) {
-					contador++;
+				if(this.matrizPecas != null) {
+					if(this.matrizPecas[i][k].equals(matrizCorreta[i][k])) {
+						contador++;
+					}
 				}
 			}
 		}

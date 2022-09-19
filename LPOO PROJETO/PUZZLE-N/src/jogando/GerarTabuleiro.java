@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 import logicaJogo.*;
 import menu.Configurar;
 
-public class GerarTabuleiro extends JPanel implements ActionListener{
+public class GerarTabuleiro extends JPanel{
 	
 	private MexerPeca tabuleiro;
 	private static final Color COR_PECA = new Color(50, 0, 50);
@@ -33,8 +33,6 @@ public class GerarTabuleiro extends JPanel implements ActionListener{
 	private int tamanhoMatriz; 
 	private int dimensao;
 	private boolean fimDeJogo;
-	private JButton botaoAjuda;
-	private JButton voltar;
 	
 	
 	public GerarTabuleiro(int tam, int dim, int mar, MexerPeca tab) {
@@ -43,21 +41,7 @@ public class GerarTabuleiro extends JPanel implements ActionListener{
 		this.margem = mar;
 		this.dimensao = dim;
 		this.tabuleiro = tab;
-		this.botaoAjuda = new JButton("Ajuda");
-		this.voltar = new JButton("Voltar");
-		
-		add(botaoAjuda);
-		botaoAjuda.setFont(fonteGeral);
-		botaoAjuda.setForeground(corTexto);
-		botaoAjuda.setBackground(corBotoes);
-		
-		add(voltar);
-		voltar.setFont(fonteGeral);
-		voltar.setForeground(corTexto);
-		voltar.setBackground(corBotoes);
-		
-		botaoAjuda.addActionListener(this);
-		voltar.addActionListener(this);
+	
 		
 	    this.tamanhoMatriz = (dim - 2 * this.margem);
 	    this.tamanhoPeca = this.tamanhoMatriz / this.tamanho;
@@ -194,19 +178,4 @@ public class GerarTabuleiro extends JPanel implements ActionListener{
 	    desenhaMatriz(g2D);
 	    mensagemFimJogo(g2D);
 	  }
-
-
-	public void actionPerformed(ActionEvent e) {
-
-		if(e.getSource()==botaoAjuda) {
-			
-		}
-		
-		else if(e.getSource()==voltar) {
-			new Configurar();
-			
-		}
-		
-		
-	}
 }
