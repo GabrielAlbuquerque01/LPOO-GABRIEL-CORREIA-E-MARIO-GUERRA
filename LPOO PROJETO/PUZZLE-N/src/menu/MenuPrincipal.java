@@ -1,7 +1,6 @@
 package menu;
 
 import static menu.ConstantesGraficas.*;
-import interfaceJogo.TelaJogo;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +8,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import jogando.TelaJogo;
 
 public class MenuPrincipal extends JFrame implements ActionListener {
 	

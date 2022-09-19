@@ -1,12 +1,12 @@
-package interfaceJogo;
+package jogando;
 import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import interfaceJogo.GerarTabuleiro;
-import jogo.MexerPeca;
+import jogando.GerarTabuleiro;
+import logicaJogo.MexerPeca;
 
 public class TelaJogo {
 	

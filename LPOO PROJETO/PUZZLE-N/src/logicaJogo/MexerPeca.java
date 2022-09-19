@@ -1,4 +1,4 @@
-package jogo;
+package logicaJogo;
 import java.io.*;
 
 public class MexerPeca extends Tabuleiro{

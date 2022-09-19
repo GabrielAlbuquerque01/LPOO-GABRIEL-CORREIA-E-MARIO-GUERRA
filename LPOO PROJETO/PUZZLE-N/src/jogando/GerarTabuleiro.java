@@ -1,4 +1,4 @@
-package interfaceJogo;
+package jogando;
 import static menu.ConstantesGraficas.corBotoes;
 import static menu.ConstantesGraficas.corTexto;
 import static menu.ConstantesGraficas.fonteGeral;
@@ -18,7 +18,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import jogo.*;
+
+import logicaJogo.*;
 import menu.Configurar;
 
 public class GerarTabuleiro extends JPanel implements ActionListener{

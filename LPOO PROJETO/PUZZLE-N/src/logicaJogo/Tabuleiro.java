@@ -1,4 +1,4 @@
-package jogo;
+package logicaJogo;
 import java.util.*;
 
 public abstract class Tabuleiro {
