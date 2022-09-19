@@ -87,6 +87,7 @@ public class MexerPeca extends Tabuleiro{
 		super.setListaPecas(matrizPecas);
 	}
 	
+	
 	public boolean terminaJogo() {
 		int contador = 0;
 		String[][] matrizCorreta = super.getMatrizCorreta();

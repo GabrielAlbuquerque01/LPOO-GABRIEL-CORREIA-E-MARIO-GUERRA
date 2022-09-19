@@ -1,4 +1,9 @@
 package interfaceJogo;
+import static menu.ConstantesGraficas.corBotoes;
+import static menu.ConstantesGraficas.corTexto;
+import static menu.ConstantesGraficas.fonteGeral;
+import static menu.ConstantesGraficas.titulo;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -6,12 +11,17 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import jogo.*;
+import menu.Configurar;
 
-public class GerarTabuleiro extends JPanel{
+public class GerarTabuleiro extends JPanel implements ActionListener{
 	
 	private MexerPeca tabuleiro;
 	private static final Color COR_PECA = new Color(50, 0, 50);
@@ -22,6 +32,9 @@ public class GerarTabuleiro extends JPanel{
 	private int tamanhoMatriz; 
 	private int dimensao;
 	private boolean fimDeJogo;
+	private JButton botaoAjuda;
+	private JButton voltar;
+	
 	
 	public GerarTabuleiro(int tam, int dim, int mar, MexerPeca tab) {
 		
@@ -29,7 +42,21 @@ public class GerarTabuleiro extends JPanel{
 		this.margem = mar;
 		this.dimensao = dim;
 		this.tabuleiro = tab;
+		this.botaoAjuda = new JButton("Ajuda");
+		this.voltar = new JButton("Voltar");
 		
+		add(botaoAjuda);
+		botaoAjuda.setFont(fonteGeral);
+		botaoAjuda.setForeground(corTexto);
+		botaoAjuda.setBackground(corBotoes);
+		
+		add(voltar);
+		voltar.setFont(fonteGeral);
+		voltar.setForeground(corTexto);
+		voltar.setBackground(corBotoes);
+		
+		botaoAjuda.addActionListener(this);
+		voltar.addActionListener(this);
 		
 	    this.tamanhoMatriz = (dim - 2 * this.margem);
 	    this.tamanhoPeca = this.tamanhoMatriz / this.tamanho;
@@ -41,12 +68,15 @@ public class GerarTabuleiro extends JPanel{
 	    
 	    fimDeJogo = false;
 	    
+	 
 	    //comunicação com os cliques do usuário
 	    addMouseListener(new MouseAdapter() {
 	        @Override
 	        public void mousePressed(MouseEvent e) {
+	        	
 	          if (fimDeJogo) {
 	            novoJogo();
+	            
 	          } else {
 	        	  
 	            // posição do clique
@@ -90,6 +120,7 @@ public class GerarTabuleiro extends JPanel{
 	    novoJogo();
 	}
 	
+	
 	private void novoJogo() {
 		fimDeJogo = false;
 		tabuleiro.preencheArray();
@@ -97,7 +128,9 @@ public class GerarTabuleiro extends JPanel{
 		tabuleiro.preencheMatriz();
 	}
 	
+	
 	private void desenhaMatriz(Graphics2D g) {
+		
 	    for (int i = 0; i < tabuleiro.getListaPecas().length; i++) {
 	      // conversao do array 1d em 2d
 	      int r = i / tamanho;
@@ -131,6 +164,7 @@ public class GerarTabuleiro extends JPanel{
 	    }
 	  }
 
+	
 	  private void mensagemFimJogo(Graphics2D g) {
 	    if (fimDeJogo) {
 	      g.setFont(getFont().deriveFont(Font.BOLD, 18));
@@ -140,6 +174,8 @@ public class GerarTabuleiro extends JPanel{
 	          getHeight() - margem);
 	    }
 	  }
+	  
+	  
 	  private void desenhaNumeros(Graphics2D g, String s, int x, int y) {
 	    FontMetrics fm = g.getFontMetrics();
 	    int ascendente = fm.getAscent();
@@ -147,6 +183,7 @@ public class GerarTabuleiro extends JPanel{
 	    g.drawString(s,  x + (tamanhoPeca - fm.stringWidth(s)) / 2, 
 	        y + (ascendente + (tamanhoPeca - (ascendente + descendente)) / 2));
 	  }
+	  
 	  
 	  @Override
 	  protected void paintComponent(Graphics g) {
@@ -156,4 +193,19 @@ public class GerarTabuleiro extends JPanel{
 	    desenhaMatriz(g2D);
 	    mensagemFimJogo(g2D);
 	  }
+
+
+	public void actionPerformed(ActionEvent e) {
+
+		if(e.getSource()==botaoAjuda) {
+			
+		}
+		
+		else if(e.getSource()==voltar) {
+			new Configurar();
+			
+		}
+		
+		
+	}
 }

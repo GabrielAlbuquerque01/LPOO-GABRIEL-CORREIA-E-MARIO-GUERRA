@@ -18,6 +18,7 @@ public abstract class Tabuleiro {
 		}
 	}
 	
+	
 	public int getMatriz() {
 		return this.matriz;
 	}
@@ -42,7 +43,8 @@ public abstract class Tabuleiro {
 		listaPecas[listaPecas.length - 1] = "  ";
 	}
 	
-	public int getVazio() {
+	
+	public int getVazio() { //retornar posição do espaço em branco
 		int pos = 0;
 		for(int i = 0; i < this.listaPecas.length; i++) {
 			if(listaPecas[i].equals("  ")) {
@@ -50,6 +52,13 @@ public abstract class Tabuleiro {
 			}
 		}
 		return pos;
+	}
+	
+	
+	public void embaralhaArray() { //embaralha a lista 
+        List<String> list =Arrays.asList(this.listaPecas); //embaralha o array que contém as pecas
+        Collections.shuffle(list);
+        list.toArray(this.listaPecas);
 	}
 	
 	
@@ -66,13 +75,6 @@ public abstract class Tabuleiro {
 	}
 	
 	
-	public void embaralhaArray() { //embaralha a lista 
-        List<String> list =Arrays.asList(this.listaPecas); //embaralha o array que contém as pecas
-        Collections.shuffle(list);
-        list.toArray(this.listaPecas);
-	}
-	
-	
 	public void exibeMatriz() { //printa os numeros do array de pecas em forma de matriz
         for(int i = 0; i < this.matriz; i++) {
             for(int k = 0; k < this.matriz; k++) {
@@ -81,6 +83,7 @@ public abstract class Tabuleiro {
             System.out.println();
         }
 	}
+	
 	 
 	public String[][] getMatrizCorreta(){
 		String[][] matrizCorreta = new String[this.matriz][this.matriz];
@@ -101,9 +104,11 @@ public abstract class Tabuleiro {
 		return matrizCorreta;
 	}
 	
+	
 	public String[] getListaPecas() {
 		return this.listaPecas;
 	}
+	
 	
 	public String[] getListaCorreta() {
 		String[] listaPecas = new String[this.matriz*this.matriz];
@@ -115,6 +120,7 @@ public abstract class Tabuleiro {
 		listaPecas[listaPecas.length - 1] = "  ";
 		return listaPecas;
 	}
+	
 	
 	public void setListaPecas(String[][] matriz) {
 		int contador = 0;

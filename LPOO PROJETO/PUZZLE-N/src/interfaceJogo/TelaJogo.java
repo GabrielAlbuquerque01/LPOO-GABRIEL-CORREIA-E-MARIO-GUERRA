@@ -1,6 +1,7 @@
 package interfaceJogo;
 import java.awt.BorderLayout;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -8,8 +9,11 @@ import interfaceJogo.GerarTabuleiro;
 import jogo.MexerPeca;
 
 public class TelaJogo {
-	public static void main(String[] args) {  
-	  	MexerPeca tabuleiro = new MexerPeca(3);
+	
+	public void jogando(int tamanhoMatriz){
+		
+	  	MexerPeca tabuleiro = new MexerPeca(tamanhoMatriz);
+	  	
 	    SwingUtilities.invokeLater(() -> {
 	      JFrame frame = new JFrame();
 	      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -21,5 +25,6 @@ public class TelaJogo {
 	      frame.setLocationRelativeTo(null);
 	      frame.setVisible(true);
 	    });
+	    
 	  }
 }
