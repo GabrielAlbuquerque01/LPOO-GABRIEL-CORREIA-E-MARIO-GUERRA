@@ -1,7 +1,8 @@
 package logicaJogo;
-import java.io.*;
 
-public class MexerPeca extends Tabuleiro{
+import java.util.Random;
+
+public class MexerPeca  <T> extends TabNumero{
 	
 	private String vazio;
 	private String numero;
@@ -12,6 +13,26 @@ public class MexerPeca extends Tabuleiro{
 	
 	public MexerPeca(int matriz) {
 		super(matriz);
+	}
+	
+	
+	public void setColuna(int coluna) {
+		this.coluna = coluna;
+	}
+	
+	
+	public int getColuna() {
+		return this.coluna;
+	}
+	
+	
+	public void setLinha(int linha) {
+		this.linha = linha;
+	}
+	
+	
+	public int getLinha() {
+		return this.linha;
 	}
 	
 	
@@ -107,5 +128,26 @@ public class MexerPeca extends Tabuleiro{
 			return false;
 		}
 	}
-	
+		
+public void trocaLugar() { //método para trocar peças de lugar. Lógica tá certa, se colocar em MexerPeca pega, mas falta implementar)
+		
+		Random rand = new Random();
+		int prob = rand.nextInt(10);
+		int l1 = rand.nextInt(getMatriz());
+		int c1 = rand.nextInt(getMatriz());
+		int l2 = rand.nextInt(getMatriz());
+		int c2 = rand.nextInt(getMatriz());
+		
+		if(this.matrizPecas != null) {
+			if(prob > 6) {
+				if((this.matrizPecas[l1][c1] != "  ") && (this.matrizPecas[l2][c2] != "  ")) {
+					String aux = this.matrizPecas[l1][c1];
+					this.matrizPecas[l1][c1] = this.matrizPecas[l2][c2];
+					this.matrizPecas[l2][c2] = aux;
+					super.setTabuleiro(matrizPecas);
+				}
+			}
+		}
+		
+}
 }

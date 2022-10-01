@@ -1,7 +1,5 @@
 package jogando;
 
-import static menu.ConstantesGraficas.corPlanoFundo;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -12,13 +10,13 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import logicaJogo.*;
 
-public class GerarTabuleiro extends JPanel{
+import logicaJogo.MexerChar;
+
+public class GerarChar extends JPanel{
 	
-	private MexerPeca tabuleiro;
+	private MexerChar tabuleiro;
 	private static final Color COR_PECA = new Color(50, 0, 50);
 	private static final Color COR_PECA_CORRETA = new Color(25, 150, 25);
 	private int tamanho;
@@ -29,7 +27,7 @@ public class GerarTabuleiro extends JPanel{
 	private boolean fimDeJogo;
 	
 	
-	public GerarTabuleiro(int tam, int dim, int mar, MexerPeca tab) {
+	public GerarChar(int tam, int dim, int mar, MexerChar tab) {
 		
 		this.tamanho = tam;
 		this.margem = mar;
@@ -57,7 +55,7 @@ public class GerarTabuleiro extends JPanel{
 	            novoJogo();
 	            
 	          } else {
-	        	tabuleiro.trocaLugar();
+	        	  
 	            // posição do clique
 	            int ex = e.getX() - margem;
 	            int ey = e.getY() - margem;
@@ -119,7 +117,7 @@ public class GerarTabuleiro extends JPanel{
 	      int y = margem + r * tamanhoPeca;
 	      
 	   // checa a peça vazia para determinar se o jogo terminou
-	      if(tabuleiro.getListaPecas()[i].equals("  ")) {
+	      if(tabuleiro.getListaPecas()[i].equals(' ')) {
 	        if (fimDeJogo) { 
 	          g.setColor(Color.white);
 	          desenhaNumeros(g, "\u2715", x, y);
@@ -146,8 +144,8 @@ public class GerarTabuleiro extends JPanel{
 	
 	  private void mensagemFimJogo(Graphics2D g) {
 	    if (fimDeJogo) {
-	    	/*new FimDeJogo();
-	      g.setFont(getFont().deriveFont(Font.BOLD, 18));
+	    	new FimDeJogo();
+	      /*g.setFont(getFont().deriveFont(Font.BOLD, 18));
 	      g.setColor(Color.WHITE);
 	      String s = "PARABÉNSS VC GANHOU O JOGO";
 	      g.drawString(s, (getWidth() - g.getFontMetrics().stringWidth(s)) / 2,
@@ -173,4 +171,7 @@ public class GerarTabuleiro extends JPanel{
 	    desenhaMatriz(g2D);
 	    mensagemFimJogo(g2D);
 	  }
+
+	
+	
 }
