@@ -4,10 +4,13 @@ import static menu.ConstantesGraficas.corBotoes;
 import static menu.ConstantesGraficas.corTexto;
 import static menu.ConstantesGraficas.fonteGeral;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import menu.MenuPrincipal;
 import logicaJogo.MexerChar;
@@ -19,6 +22,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 	private JButton voltar;
 	private int tamanhoMatriz;
 	private int modoDeJogo;
+	private JPanel tela;
 	
 	public TelaJogo(int tamanhoMatriz, int modoDeJogo) {
 		
@@ -38,16 +42,12 @@ public class TelaJogo extends JFrame implements ActionListener{
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setTitle("PUZZLE-N");
 	    setResizable(false);
-	    add(new GerarTabuleiro(tabuleiro.getMatriz(), 600, 80, tabuleiro), BorderLayout.CENTER);
+	    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 600, 80, tabuleiro);
+	    add(tela, BorderLayout.CENTER);
 	    pack();
 	    setLocationRelativeTo(null);
 	    setVisible(true);
 	    
-	    add(botaoAjuda, BorderLayout.NORTH);
-		botaoAjuda.setFont(fonteGeral);
-		botaoAjuda.setForeground(corTexto);
-		botaoAjuda.setBackground(corBotoes);
-		
 		add(voltar, BorderLayout.SOUTH);
 		voltar.setFont(fonteGeral);
 		voltar.setForeground(corTexto);
@@ -64,15 +64,11 @@ public class TelaJogo extends JFrame implements ActionListener{
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
-		    add(new GerarChar(tabuleiro.getMatriz(), 600, 80, tabuleiro), BorderLayout.CENTER);
+		    this.tela = new GerarChar(tabuleiro.getMatriz(), 600, 80, tabuleiro);
+		    add(tela, BorderLayout.CENTER);
 		    pack();
 		    setLocationRelativeTo(null);
 		    setVisible(true);
-		    
-		    add(botaoAjuda, BorderLayout.NORTH);
-			botaoAjuda.setFont(fonteGeral);
-			botaoAjuda.setForeground(corTexto);
-			botaoAjuda.setBackground(corBotoes);
 			
 			add(voltar, BorderLayout.SOUTH);
 			voltar.setFont(fonteGeral);
@@ -84,8 +80,36 @@ public class TelaJogo extends JFrame implements ActionListener{
 			
 		}
 		
+		else if (modoDeJogo == 3) {
+	
+			MexerPeca tabuleiro = new MexerPeca(this.tamanhoMatriz);
+			
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			setTitle("PUZZLE-N");
+			setResizable(false);
+			this.tela = new GerarImg(tabuleiro.getMatriz(), 600, 80, tabuleiro);
+		    add(tela, BorderLayout.CENTER);
+			pack();
+			setLocationRelativeTo(null);
+			setVisible(true);
+				    
+			add(botaoAjuda, BorderLayout.NORTH);
+			botaoAjuda.setFont(fonteGeral);
+			botaoAjuda.setForeground(corTexto);
+			botaoAjuda.setBackground(corBotoes);
+					
+			add(voltar, BorderLayout.SOUTH);
+			voltar.setFont(fonteGeral);
+			voltar.setForeground(corTexto);
+			voltar.setBackground(corBotoes);
+				    
+			botaoAjuda.addActionListener(this);
+			voltar.addActionListener(this);	
+		}
+				
 		
 	}
+	
 	
 	public void actionPerformed(ActionEvent e) {
 

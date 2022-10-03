@@ -11,7 +11,12 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import logicaJogo.*;
@@ -117,7 +122,6 @@ public class GerarTabuleiro extends JPanel{
 	      // conversao realizada na interface
 	      int x = margem + c * tamanhoPeca;
 	      int y = margem + r * tamanhoPeca;
-	      
 	   // checa a peça vazia para determinar se o jogo terminou
 	      if(tabuleiro.getListaPecas()[i].equals("  ")) {
 	        if (fimDeJogo) { 

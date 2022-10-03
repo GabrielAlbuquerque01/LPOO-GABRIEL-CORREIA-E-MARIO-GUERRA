@@ -1,7 +1,17 @@
 package logicaJogo;
 
 public class TabPath implements Tabuleiro{
-
+	
+	private int matriz;
+	
+	public TabPath(int matriz){
+		setMatriz(matriz);
+	}
+	
+	public void setMatriz(int matriz) {
+		this.matriz = matriz;
+	}
+	
 	@Override
 	public void preencheArray() {
 		// TODO Auto-generated method stub
