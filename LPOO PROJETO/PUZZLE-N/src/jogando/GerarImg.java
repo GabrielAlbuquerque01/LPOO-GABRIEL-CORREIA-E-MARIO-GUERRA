@@ -119,15 +119,15 @@ public class GerarImg extends JPanel{
 		String pasta;
 		
 		if(tabuleiro.getMatriz() == 2) {
-			pasta = "imagens 2x2";
+			pasta = "imagens2x2";
 			numImg = "_2";
 		}
 		else if (tabuleiro.getMatriz() == 3){
-			pasta = "imagen3x3";
+			pasta = "imagens3x3";
 			numImg = "_3";
 		}
 		else {
-			pasta = "imagen4x4";
+			pasta = "imagens4x4";
 			numImg = "_4";
 		}
 		
