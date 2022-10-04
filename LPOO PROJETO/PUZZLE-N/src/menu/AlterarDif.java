@@ -2,6 +2,7 @@ package menu;
 
 import static menu.ConstantesGraficas.*;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,16 +10,19 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import fonte.Fonte;
 import jogando.TelaJogo;
 
 public class AlterarDif extends JFrame implements ActionListener {
 	
-	private JLabel descricao = new JLabel("Escolha o modo de dificuldade!");
+	private JLabel descricao = new JLabel("Escolha a dificuldade!");
 	private JButton dif1 = new JButton("Fácil - 2x2");
 	private JButton dif2 = new JButton("Médio - 3x3");
 	private JButton dif3 = new JButton("Difícil - 4x4");
 	private JButton voltar = new JButton("Voltar");
 	private MenuPrincipal menu;
+	private Fonte fonte = new Fonte();
+	private Font fonteGeral = fonte.getFont();
 	
 	public AlterarDif(MenuPrincipal menu) {
 		

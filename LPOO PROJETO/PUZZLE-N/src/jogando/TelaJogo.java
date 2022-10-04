@@ -5,6 +5,7 @@ import static menu.ConstantesGraficas.corTexto;
 import static menu.ConstantesGraficas.fonteGeral;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import fonte.Fonte;
 import menu.MenuPrincipal;
 import logicaJogo.MexerChar;
 import logicaJogo.MexerPeca;
@@ -23,6 +25,8 @@ public class TelaJogo extends JFrame implements ActionListener{
 	private int tamanhoMatriz;
 	private int modoDeJogo;
 	private JPanel tela;
+	private Fonte fonte = new Fonte();
+	private Font fonteGeral = fonte.getFont();
 	
 	public TelaJogo(int tamanhoMatriz, int modoDeJogo) {
 		

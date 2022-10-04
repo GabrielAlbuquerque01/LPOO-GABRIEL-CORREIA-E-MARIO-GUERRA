@@ -2,13 +2,21 @@ package menu;
 
 import static menu.ConstantesGraficas.*;
 
+import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import fonte.Fonte;
 import jogando.TelaJogo;
 
 public class MenuPrincipal extends JFrame implements ActionListener {
@@ -19,17 +27,19 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		private JLabel difAtual = new JLabel();
 		private JLabel modoAtual = new JLabel();
 		private JButton jogar = new JButton("Jogar");
-		private JButton alterarDif = new JButton("Alterar dificuldade");
+		private JButton alterarDif = new JButton("dificuldade");
 		private JButton ranking = new JButton("Ranking");
 		private JButton sair = new JButton("Sair");
-		private JButton alterarModo = new JButton("Alterar modo");
-		
+		private JButton alterarModo = new JButton("modo");
+		private Fonte fonte = new Fonte();
+		private Font fonteGeral = fonte.getFont();
 		
 	public MenuPrincipal() {
 		
 		this.dif = 3; //inicialização padrão
 		this.modo = 1;
 		
+
 		setTitle("Menu principal");
 		setSize(600,600);
 		setResizable(false);
@@ -38,6 +48,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		setVisible(true);
 		setLayout(null);
 		getContentPane().setBackground(corPlanoFundo);
+
+	
 		
 		add(nomeDoJogo);
 		nomeDoJogo.setBounds(120,60,400,100);
@@ -45,13 +57,13 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		nomeDoJogo.setForeground(corTexto);
 		
 		add(difAtual);
-		difAtual.setText("Dificuldade atual: Médio");
+		difAtual.setText("Dificuldade: Médio");
 		difAtual.setBounds(10,480,250,50);
 		difAtual.setFont(fonteGeral);
 		difAtual.setForeground(corTexto);
 		
 		add(modoAtual);
-		modoAtual.setText("Modo atual: Número");
+		modoAtual.setText("Modo: Número");
 		modoAtual.setBounds(10,510,250,50);
 		modoAtual.setFont(fonteGeral);
 		modoAtual.setForeground(corTexto);
@@ -111,13 +123,13 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 	public void mostrarDif() {
 		
 		if (this.dif == 2) {
-			difAtual.setText("Dificuldade atual: Fácil");
+			difAtual.setText("Dificuldade: Fácil");
 		}
 		else if (this.dif == 3) {
-			difAtual.setText("Dificuldade atual: Médio");
+			difAtual.setText("Dificuldade: Médio");
 		}
 		else {
-			difAtual.setText("Dificuldade atual: Difícil");
+			difAtual.setText("Dificuldade: Difícil");
 		}	
 	}
 	
@@ -125,16 +137,16 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 	public void mostrarModo() {
 		
 		if (this.modo == 1) {
-			modoAtual.setText("Modo Atual: Número");
+			modoAtual.setText("Modo: Número");
 		}
 		else if (this.modo == 2) {
-			modoAtual.setText("Modo Atual: Caractere");
+			modoAtual.setText("Modo: Caractere");
 		}
 		else if (this.modo == 3) {
-			modoAtual.setText("Modo Atual: Path");
+			modoAtual.setText("Modo: Path");
 		}
 		else {
-			modoAtual.setText("Modo Atual: Maluco");
+			modoAtual.setText("Modo: Maluco");
 		}
 	}
 	

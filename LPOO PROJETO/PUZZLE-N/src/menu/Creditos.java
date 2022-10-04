@@ -2,6 +2,7 @@ package menu;
 
 import static menu.ConstantesGraficas.*;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,11 +10,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import fonte.Fonte;
+
 public class Creditos extends JFrame implements ActionListener {
 
 	private JLabel titulo;
 	private JLabel criadores;
 	private JButton voltar;
+	private Fonte fonte = new Fonte();
+	private Font fonteGeral = fonte.getFont();
 	
 	public Creditos() {
 		

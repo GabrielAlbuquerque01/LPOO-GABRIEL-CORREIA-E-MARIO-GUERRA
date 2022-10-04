@@ -5,11 +5,14 @@ import static menu.ConstantesGraficas.corPlanoFundo;
 import static menu.ConstantesGraficas.corTexto;
 import static menu.ConstantesGraficas.fonteGeral;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+
+import fonte.Fonte;
 
 public class AlterarModo extends JFrame implements ActionListener{
 	
@@ -19,6 +22,8 @@ public class AlterarModo extends JFrame implements ActionListener{
 	private JButton maluco = new JButton("Maluco");
 	private JButton voltar = new JButton("Voltar");
 	private MenuPrincipal menu;
+	private Fonte fonte = new Fonte();
+	private Font fonteGeral = fonte.getFont();
 	
 	public AlterarModo(MenuPrincipal menu) {
 		

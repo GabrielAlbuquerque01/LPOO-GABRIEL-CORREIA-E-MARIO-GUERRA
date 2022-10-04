@@ -2,6 +2,7 @@ package menu;
 
 import static menu.ConstantesGraficas.*;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import fonte.Fonte;
 import jogando.TelaJogo;
 
 public class Configurar extends JFrame implements ActionListener {
@@ -19,6 +21,8 @@ public class Configurar extends JFrame implements ActionListener {
 	private JButton dif3 = new JButton("Difícil - 4x4");
 	private JButton maluco = new JButton("PUZZLE-N MALUCO!");
 	private JButton voltar = new JButton("Voltar");
+	private Fonte fonte = new Fonte();
+	private Font fonteGeral = fonte.getFont();
 	
 	public Configurar() {
 		
