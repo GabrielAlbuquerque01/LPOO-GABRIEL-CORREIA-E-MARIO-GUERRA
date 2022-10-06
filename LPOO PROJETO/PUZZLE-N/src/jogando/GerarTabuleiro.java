@@ -34,7 +34,7 @@ public class GerarTabuleiro extends JPanel{
 	private boolean fimDeJogo;
 	
 	
-	public GerarTabuleiro(int tam, int dim, int mar, MexerPeca tab) {
+	public GerarTabuleiro(int tam, int dim, int mar, MexerPeca tab, boolean maluco) {
 		
 		this.tamanho = tam;
 		this.margem = mar;
@@ -62,7 +62,9 @@ public class GerarTabuleiro extends JPanel{
 	            novoJogo();
 	            
 	          } else {
-	        	tabuleiro.trocaLugar();
+	        	if(maluco == true) {
+	        		tabuleiro.trocaLugar();
+	        	}
 	            // posição do clique
 	            int ex = e.getX() - margem;
 	            int ey = e.getY() - margem;
@@ -150,12 +152,7 @@ public class GerarTabuleiro extends JPanel{
 	
 	  private void mensagemFimJogo(Graphics2D g) {
 	    if (fimDeJogo) {
-	    	/*new FimDeJogo();
-	      g.setFont(getFont().deriveFont(Font.BOLD, 18));
-	      g.setColor(Color.WHITE);
-	      String s = "PARABÉNSS VC GANHOU O JOGO";
-	      g.drawString(s, (getWidth() - g.getFontMetrics().stringWidth(s)) / 2,
-	          getHeight() - margem); */
+	    	new FimDeJogo();
 	    }
 	  }
 	  

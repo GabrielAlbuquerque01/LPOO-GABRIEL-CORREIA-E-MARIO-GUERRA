@@ -5,7 +5,10 @@ import static menu.ConstantesGraficas.*;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -36,6 +39,13 @@ public class AlterarDif extends JFrame implements ActionListener {
 		setVisible(true);
 		setLayout(null);
 		getContentPane().setBackground(corPlanoFundo);
+		
+		try {
+            setContentPane(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("backgrounds/background.png")))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
 		
 		add(descricao);
 		descricao.setBounds(140,80,400,100);

@@ -8,14 +8,19 @@ import static menu.ConstantesGraficas.fonteGeral;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import fonte.Fonte;
 
 public class AlterarModo extends JFrame implements ActionListener{
 	
+	private JLabel descricao = new JLabel("Escolha o modo de jogo!");
 	private JButton numero = new JButton("Numero");
 	private JButton caractere = new JButton("Caractere");
 	private JButton path = new JButton("Path");
@@ -37,6 +42,17 @@ public class AlterarModo extends JFrame implements ActionListener{
 		setVisible(true);
 		setLayout(null);
 		getContentPane().setBackground(corPlanoFundo);
+		
+		try {
+            setContentPane(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("backgrounds/background.png")))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+		add(descricao);
+		descricao.setBounds(130,60,400,100);
+		descricao.setFont(fonteGeral);
+		descricao.setForeground(corTexto);
 		
 		add(numero);
 		numero.setBounds(160,150,250,50);

@@ -145,11 +145,6 @@ public class GerarChar extends JPanel{
 	  private void mensagemFimJogo(Graphics2D g) {
 	    if (fimDeJogo) {
 	    	new FimDeJogo();
-	      /*g.setFont(getFont().deriveFont(Font.BOLD, 18));
-	      g.setColor(Color.WHITE);
-	      String s = "PARABÉNSS VC GANHOU O JOGO";
-	      g.drawString(s, (getWidth() - g.getFontMetrics().stringWidth(s)) / 2,
-	          getHeight() - margem); */
 	    }
 	  }
 	  

@@ -2,7 +2,9 @@ package menu;
 
 import static menu.ConstantesGraficas.*;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import fonte.Fonte;
 import jogando.TelaJogo;
@@ -48,13 +51,19 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		setVisible(true);
 		setLayout(null);
 		getContentPane().setBackground(corPlanoFundo);
-
-	
+		
+		try {
+            setContentPane(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("backgrounds/inicio.png")))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
 		
 		add(nomeDoJogo);
 		nomeDoJogo.setBounds(120,60,400,100);
 		nomeDoJogo.setFont(titulo);
 		nomeDoJogo.setForeground(corTexto);
+		nomeDoJogo.setVisible(true);
 		
 		add(difAtual);
 		difAtual.setText("Dificuldade: Médio");
@@ -74,6 +83,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		jogar.setFont(fonteGeral);
 		jogar.setForeground(corTexto);
 		jogar.setBackground(corBotoes);
+		jogar.setVisible(true);
 		
 		add(alterarModo);
 		alterarModo.setBounds(170,250,250,50);
@@ -98,7 +108,6 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		sair.setFont(fonteGeral);
 		sair.setForeground(corTexto);
 		sair.setBackground(corBotoes);
-		
 		
 		jogar.addActionListener(this);
 		alterarDif.addActionListener(this);

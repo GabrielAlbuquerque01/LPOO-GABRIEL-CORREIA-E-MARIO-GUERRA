@@ -9,8 +9,13 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import fonte.Fonte;
@@ -25,6 +30,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 	private int tamanhoMatriz;
 	private int modoDeJogo;
 	private JPanel tela;
+	private GerarImg telaImg;
 	private Fonte fonte = new Fonte();
 	private Font fonteGeral = fonte.getFont();
 	
@@ -46,7 +52,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setTitle("PUZZLE-N");
 	    setResizable(false);
-	    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 600, 80, tabuleiro);
+	    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 600, 80, tabuleiro, false);
 	    add(tela, BorderLayout.CENTER);
 	    pack();
 	    setLocationRelativeTo(null);
@@ -91,12 +97,13 @@ public class TelaJogo extends JFrame implements ActionListener{
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setTitle("PUZZLE-N");
 			setResizable(false);
-			this.tela = new GerarImg(tabuleiro.getMatriz(), 600, 80, tabuleiro);
-		    add(tela, BorderLayout.CENTER);
+			this.telaImg = new GerarImg(tabuleiro.getMatriz(), 600, 80, tabuleiro);
+		    add(telaImg, BorderLayout.CENTER);
 			pack();
 			setLocationRelativeTo(null);
 			setVisible(true);
 				    
+			
 			add(botaoAjuda, BorderLayout.NORTH);
 			botaoAjuda.setFont(fonteGeral);
 			botaoAjuda.setForeground(corTexto);
@@ -110,6 +117,28 @@ public class TelaJogo extends JFrame implements ActionListener{
 			botaoAjuda.addActionListener(this);
 			voltar.addActionListener(this);	
 		}
+		
+		if (modoDeJogo == 4) {
+			
+		  	MexerPeca tabuleiro = new MexerPeca(this.tamanhoMatriz);
+		  
+		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		    setTitle("PUZZLE-N");
+		    setResizable(false);
+		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 600, 80, tabuleiro, true);
+		    add(tela, BorderLayout.CENTER);
+		    pack();
+		    setLocationRelativeTo(null);
+		    setVisible(true);
+		    
+			add(voltar, BorderLayout.SOUTH);
+			voltar.setFont(fonteGeral);
+			voltar.setForeground(corTexto);
+			voltar.setBackground(corBotoes);
+		    
+		    botaoAjuda.addActionListener(this);
+			voltar.addActionListener(this);
+			}
 				
 		
 	}
@@ -118,7 +147,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 
 		if(e.getSource() == botaoAjuda) {
-			
+
 		}
 		
 		else if(e.getSource() == voltar) {

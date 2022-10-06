@@ -53,7 +53,6 @@ public class GerarImg extends JPanel{
 	    
 	    fimDeJogo = false;
 	    
-	 
 	    //comunicação com os cliques do usuário
 	    addMouseListener(new MouseAdapter() {
 	        @Override
@@ -103,7 +102,7 @@ public class GerarImg extends JPanel{
 	      });
 	    novoJogo();
 	}
-	
+
 	
 	private void novoJogo() {
 		fimDeJogo = false;
@@ -111,7 +110,6 @@ public class GerarImg extends JPanel{
 		tabuleiro.embaralhaArray();
 		tabuleiro.preencheMatriz();
 	}
-	
 	
 	private void desenhaMatriz(Graphics2D g) {
 		BufferedImage imagem = null;
@@ -159,9 +157,6 @@ public class GerarImg extends JPanel{
 	      g.setColor(Color.BLACK);
 	      g.drawRoundRect(x, y, tamanhoPeca, tamanhoPeca, 80, 80);
 	      g.setColor(Color.WHITE);
-	      desenhaNumeros(g, String.valueOf(tabuleiro.getListaPecas()[i]), x , y);
-	      //imagem = imagem.getSubimage(0, 0, tamanhoPeca, tamanhoPeca);
-	      
 	      try {
 	    	  	String path = pasta + "/" + tabuleiro.getListaPecas()[i]+ numImg + ".jpg";
 			    imagem = ImageIO.read(getClass().getResourceAsStream(path));
@@ -169,18 +164,14 @@ public class GerarImg extends JPanel{
 			}
 	      
 	      g.drawImage(imagem, x, y, tamanhoPeca, tamanhoPeca, null);
+	      //desenhaNumeros(g, String.valueOf(tabuleiro.getListaPecas()[i]), x , y);
 	    }
 	  }
 
 	
 	  private void mensagemFimJogo(Graphics2D g) {
 	    if (fimDeJogo) {
-	    	/*new FimDeJogo();
-	      g.setFont(getFont().deriveFont(Font.BOLD, 18));
-	      g.setColor(Color.WHITE);
-	      String s = "PARABÉNSS VC GANHOU O JOGO";
-	      g.drawString(s, (getWidth() - g.getFontMetrics().stringWidth(s)) / 2,
-	          getHeight() - margem); */
+	      new FimDeJogo();
 	    }
 	  }
 	  
