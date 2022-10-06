@@ -181,7 +181,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		}
 		
 		else if(e.getSource()==ranking) {
-			
+			this.setVisible(false);
+			new Ranking(this);
 		}
 		
 		else if(e.getSource()==sair) {
