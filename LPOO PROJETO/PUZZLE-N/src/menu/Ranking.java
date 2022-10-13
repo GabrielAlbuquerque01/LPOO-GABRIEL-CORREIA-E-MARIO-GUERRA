@@ -62,7 +62,7 @@ public class Ranking extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==voltar) {
 			this.dispose();
-			new MenuPrincipal();
+			new MenuPrincipal(menu.getJogador());
 		}
 	}
 }

@@ -18,14 +18,17 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import fonte.Fonte;
 import jogando.TelaJogo;
 
 public class MenuPrincipal extends JFrame implements ActionListener {
-	
+
 		private int dif;
 		private int modo;
+		private boolean maluco;
+		private Jogador jogador = new Jogador("");
 		private JLabel nomeDoJogo = new JLabel("PUZZLE-N");
 		private JLabel difAtual = new JLabel();
 		private JLabel modoAtual = new JLabel();
@@ -37,10 +40,13 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		private Fonte fonte = new Fonte();
 		private Font fonteGeral = fonte.getFont();
 		
-	public MenuPrincipal() {
+	public MenuPrincipal(String NomeJogador) {
+		
+		this.jogador.setNome(NomeJogador);
 		
 		this.dif = 3; //inicialização padrão
 		this.modo = 1;
+		this.maluco = false;
 		
 
 		setTitle("Menu principal");
@@ -57,7 +63,6 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-		
 		
 		add(nomeDoJogo);
 		nomeDoJogo.setBounds(120,60,400,100);
@@ -118,6 +123,22 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
 	}
 	
+	public boolean getMaluco() {
+		return this.maluco;
+	}
+	
+	public void setMaluco(boolean maluco) {
+		this.maluco = maluco;
+	}
+	
+	public String getJogador() {
+		return jogador.getNome();
+		
+	}
+	
+	public void setJogador(String nome) {
+		this.jogador.setNome(nome);
+	}
 	
 	public void setDif(int dif) {
 		this.dif = dif;
@@ -154,8 +175,14 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		else if (this.modo == 3) {
 			modoAtual.setText("Modo: Path");
 		}
-		else {
-			modoAtual.setText("Modo: Maluco");
+		else if (this.modo == 4)  {
+			modoAtual.setText("Modo: Maluquinho");
+		}
+		else if (this.modo == 5)  {
+			modoAtual.setText("Modo: Insano");
+		}
+		else if (this.modo == 6)  {
+			modoAtual.setText("Modo: Hospício");
 		}
 	}
 	
@@ -164,7 +191,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		
 		if(e.getSource()==jogar) {
 			this.dispose();
-			TelaJogo jogando = new TelaJogo(this.dif, this.modo);
+			TelaJogo jogando = new TelaJogo(this.dif, this.modo,this.jogador);
 			jogando.jogando();
 		}
 		
@@ -192,9 +219,9 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 	}
 	
 	
-	public static void main (String[] args) {
+	/*public static void main (String[] args) {
 		new MenuPrincipal();
-	}
+	}*/
 	
 	
 }
