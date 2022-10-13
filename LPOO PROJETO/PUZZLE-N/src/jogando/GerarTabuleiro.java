@@ -20,28 +20,32 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import logicaJogo.*;
+import menu.Jogador;
+import menu.MenuPrincipal;
 
 public class GerarTabuleiro extends JPanel{
 	
 	private MexerPeca tabuleiro;
-	private static final Color COR_PECA = new Color(50, 0, 50);
-	private static final Color COR_PECA_CORRETA = new Color(25, 150, 25);
+	private Jogador jogador;
 	private int tamanho;
 	private int tamanhoPeca;
 	private int margem;
 	private int tamanhoMatriz; 
 	private int dimensao;
 	private boolean fimDeJogo;
+	private TelaJogo tela;
+	private static final Color COR_PECA = new Color(50, 0, 50);
+	private static final Color COR_PECA_CORRETA = new Color(25, 150, 25);
 	
-	
-	public GerarTabuleiro(int tam, int dim, int mar, MexerPeca tab, boolean maluco) {
+	public GerarTabuleiro(int tam, int dim, int mar, MexerPeca tab, TelaJogo tela, Jogador jogador) {
 		
+		this.fimDeJogo = false;
+		this.jogador = jogador;
+		this.tela = tela;
 		this.tamanho = tam;
 		this.margem = mar;
 		this.dimensao = dim;
 		this.tabuleiro = tab;
-	
-		
 	    this.tamanhoMatriz = (dim - 2 * this.margem);
 	    this.tamanhoPeca = this.tamanhoMatriz / this.tamanho;
 	    
@@ -49,9 +53,6 @@ public class GerarTabuleiro extends JPanel{
 	    setBackground(Color.BLACK);
 	    setForeground(COR_PECA);
 	    setFont(new Font("SansSerif", Font.BOLD, 60));
-	    
-	    fimDeJogo = false;
-	    
 	 
 	    //comunicação com os cliques do usuário
 	    addMouseListener(new MouseAdapter() {
@@ -62,8 +63,8 @@ public class GerarTabuleiro extends JPanel{
 	            novoJogo();
 	            
 	          } else {
-	        	if(maluco == true) {
-	        		tabuleiro.trocaLugar();
+	        	if(tabuleiro instanceof MexerMaluco) {
+	        		((MexerMaluco)tabuleiro).trocaLugar();
 	        	}
 	            // posição do clique
 	            int ex = e.getX() - margem;
@@ -104,6 +105,10 @@ public class GerarTabuleiro extends JPanel{
 	        }
 	      });
 	    novoJogo();
+	}
+	
+	public boolean getFimDeJogo() {
+		return this.fimDeJogo;
 	}
 	
 	
@@ -150,9 +155,10 @@ public class GerarTabuleiro extends JPanel{
 	  }
 
 	
-	  private void mensagemFimJogo(Graphics2D g) {
+	  private void mensagemFimJogo() {
 	    if (fimDeJogo) {
-	    	new FimDeJogo();
+	    	this.tela.dispose();
+	    	new FimDeJogo(this.tela.getNomeJogador(),this.tela.getTempoJogador());
 	    }
 	  }
 	  
@@ -172,6 +178,7 @@ public class GerarTabuleiro extends JPanel{
 	    Graphics2D g2D = (Graphics2D) g;
 	    g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 	    desenhaMatriz(g2D);
-	    mensagemFimJogo(g2D);
+	    mensagemFimJogo();
 	  }
+	  
 }

@@ -20,6 +20,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import logicaJogo.*;
+import menu.Jogador;
 
 
 public class GerarImg extends JPanel{
@@ -33,10 +34,15 @@ public class GerarImg extends JPanel{
 	private int tamanhoMatriz; 
 	private int dimensao;
 	private boolean fimDeJogo;
+	private Jogador jogador;
+	private TelaJogo tela;
 	
 	
-	public GerarImg(int tam, int dim, int mar, MexerPeca tab) {
+	public GerarImg(int tam, int dim, int mar, MexerPeca tab,TelaJogo tela, Jogador jogador) {
 		
+		this.fimDeJogo = false;
+		this.jogador = jogador;
+		this.tela = tela;
 		this.tamanho = tam;
 		this.margem = mar;
 		this.dimensao = dim;
@@ -169,10 +175,11 @@ public class GerarImg extends JPanel{
 	  }
 
 	
-	  private void mensagemFimJogo(Graphics2D g) {
-	    if (fimDeJogo) {
-	      new FimDeJogo();
-	    }
+	  private void mensagemFimJogo() {
+		  if (fimDeJogo) {
+		    	this.tela.dispose();
+		    	new FimDeJogo(this.tela.getNomeJogador(),this.tela.getTempoJogador());
+		    }
 	  }
 	  
 	  
@@ -191,6 +198,6 @@ public class GerarImg extends JPanel{
 	    Graphics2D g2D = (Graphics2D) g;
 	    g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 	    desenhaMatriz(g2D);
-	    mensagemFimJogo(g2D);
+	    mensagemFimJogo();
 	  }
 }

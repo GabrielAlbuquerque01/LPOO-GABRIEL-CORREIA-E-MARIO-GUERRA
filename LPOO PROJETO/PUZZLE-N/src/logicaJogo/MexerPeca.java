@@ -128,26 +128,11 @@ public class MexerPeca  <T> extends TabNumero{
 			return false;
 		}
 	}
+	
+	public String[][] getMatrizPecas() {
+		return this.matrizPecas;
+	}
+	
+	
 		
-public void trocaLugar() { //método para trocar peças de lugar. Lógica tá certa, se colocar em MexerPeca pega, mas falta implementar)
-		
-		Random rand = new Random();
-		int prob = rand.nextInt(10);
-		int l1 = rand.nextInt(getMatriz());
-		int c1 = rand.nextInt(getMatriz());
-		int l2 = rand.nextInt(getMatriz());
-		int c2 = rand.nextInt(getMatriz());
-		
-		if(this.matrizPecas != null) {
-			if(prob > 6) {
-				if((this.matrizPecas[l1][c1] != "  ") && (this.matrizPecas[l2][c2] != "  ")) {
-					String aux = this.matrizPecas[l1][c1];
-					this.matrizPecas[l1][c1] = this.matrizPecas[l2][c2];
-					this.matrizPecas[l2][c2] = aux;
-					super.setTabuleiro(matrizPecas);
-				}
-			}
-		}
-		
-}
 }

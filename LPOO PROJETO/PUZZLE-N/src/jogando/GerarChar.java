@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 
 import logicaJogo.MexerChar;
+import menu.Jogador;
 
 public class GerarChar extends JPanel{
 	
@@ -25,16 +26,19 @@ public class GerarChar extends JPanel{
 	private int tamanhoMatriz; 
 	private int dimensao;
 	private boolean fimDeJogo;
+	private Jogador jogador;
+	private TelaJogo tela;
 	
 	
-	public GerarChar(int tam, int dim, int mar, MexerChar tab) {
+	public GerarChar(int tam, int dim, int mar, MexerChar tab, TelaJogo tela, Jogador jogador) {
 		
+		this.fimDeJogo = false;
+		this.jogador = jogador;
+		this.tela = tela;
 		this.tamanho = tam;
 		this.margem = mar;
 		this.dimensao = dim;
 		this.tabuleiro = tab;
-	
-		
 	    this.tamanhoMatriz = (dim - 2 * this.margem);
 	    this.tamanhoPeca = this.tamanhoMatriz / this.tamanho;
 	    
@@ -42,8 +46,7 @@ public class GerarChar extends JPanel{
 	    setBackground(Color.BLACK);
 	    setForeground(COR_PECA);
 	    setFont(new Font("SansSerif", Font.BOLD, 60));
-	    
-	    fimDeJogo = false;
+	  
 	    
 	 
 	    //comunicação com os cliques do usuário
@@ -97,6 +100,9 @@ public class GerarChar extends JPanel{
 	    novoJogo();
 	}
 	
+	public boolean getFimDeJogo() {
+		return this.fimDeJogo;
+	}
 	
 	private void novoJogo() {
 		fimDeJogo = false;
@@ -142,9 +148,10 @@ public class GerarChar extends JPanel{
 	  }
 
 	
-	  private void mensagemFimJogo(Graphics2D g) {
+	  private void mensagemFimJogo() {
 	    if (fimDeJogo) {
-	    	new FimDeJogo();
+	    	this.tela.dispose();
+	    	new FimDeJogo(this.tela.getNomeJogador(),this.tela.getTempoJogador());
 	    }
 	  }
 	  
@@ -164,7 +171,7 @@ public class GerarChar extends JPanel{
 	    Graphics2D g2D = (Graphics2D) g;
 	    g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 	    desenhaMatriz(g2D);
-	    mensagemFimJogo(g2D);
+	    mensagemFimJogo();
 	  }
 
 	

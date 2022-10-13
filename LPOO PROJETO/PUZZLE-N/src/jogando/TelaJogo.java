@@ -1,8 +1,6 @@
 package jogando;
 
-import static menu.ConstantesGraficas.corBotoes;
-import static menu.ConstantesGraficas.corTexto;
-import static menu.ConstantesGraficas.fonteGeral;
+import static menu.ConstantesGraficas.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -19,27 +17,66 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import fonte.Fonte;
+import menu.Jogador;
 import menu.MenuPrincipal;
 import logicaJogo.MexerChar;
+import logicaJogo.MexerMaluco;
 import logicaJogo.MexerPeca;
 
 public class TelaJogo extends JFrame implements ActionListener{
 	
-	private JButton botaoAjuda;
-	private JButton voltar;
 	private int tamanhoMatriz;
 	private int modoDeJogo;
+	private boolean maluco;
+	private Cronometro cronometro;
+	private JPanel info = new JPanel();
+	private JLabel mostrarTempo = new JLabel("  tempo - 0 m : 0 s");
+	private Jogador jogador;
+	private JLabel mostrarJogador = new JLabel();
+	private JButton botaoAjuda;
+	private JButton voltar;
 	private JPanel tela;
 	private GerarImg telaImg;
 	private Fonte fonte = new Fonte();
 	private Font fonteGeral = fonte.getFont();
 	
-	public TelaJogo(int tamanhoMatriz, int modoDeJogo) {
+	public TelaJogo(int tamanhoMatriz, int modoDeJogo, Jogador jogador) {
 		
+		this.cronometro = new Cronometro(this);
+		this.jogador = jogador;
 		this.modoDeJogo = modoDeJogo;
 		this.tamanhoMatriz = tamanhoMatriz;
 		this.botaoAjuda = new JButton("Ajuda");
 		this.voltar = new JButton("Voltar para o menu");
+		
+		add(info,BorderLayout.NORTH);
+	    info.setLayout(new BorderLayout());
+	    info.setBackground(corPlanoFundo);
+	    
+	    info.add(mostrarJogador,BorderLayout.NORTH);
+		mostrarJogador.setFont(fonteGeral);
+		mostrarJogador.setForeground(corTexto);
+		mostrarJogador.setText("  jogador - "+this.jogador.getNome());
+		mostrarJogador.setVisible(true);
+		
+	    
+	    info.add(mostrarTempo,BorderLayout.SOUTH);
+		mostrarTempo.setFont(fonteGeral);
+		mostrarTempo.setForeground(corTexto);
+		mostrarTempo.setVisible(true);
+		
+	    
+		add(voltar, BorderLayout.SOUTH);
+		voltar.setFont(fonteGeral);
+		voltar.setForeground(corTexto);
+		voltar.setBackground(corBotoes);
+	    
+		voltar.addActionListener(this);
+		
+		cronometro.start();
+		
+		pack();
+		
 		
 	}
 	
@@ -47,24 +84,17 @@ public class TelaJogo extends JFrame implements ActionListener{
 		
 		if (modoDeJogo == 1) {
 		
-	  	MexerPeca tabuleiro = new MexerPeca(this.tamanhoMatriz);
-	  
-	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    setTitle("PUZZLE-N");
-	    setResizable(false);
-	    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 600, 80, tabuleiro, false);
-	    add(tela, BorderLayout.CENTER);
-	    pack();
-	    setLocationRelativeTo(null);
-	    setVisible(true);
-	    
-		add(voltar, BorderLayout.SOUTH);
-		voltar.setFont(fonteGeral);
-		voltar.setForeground(corTexto);
-		voltar.setBackground(corBotoes);
-	    
-	    botaoAjuda.addActionListener(this);
-		voltar.addActionListener(this);
+		  	MexerPeca tabuleiro = new MexerPeca(this.tamanhoMatriz);
+		  
+		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		    setTitle("PUZZLE-N");
+		    setResizable(false);
+		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 500, 50, tabuleiro, this, this.jogador);
+		    add(tela, BorderLayout.CENTER);
+		    pack();
+		    setLocationRelativeTo(null);
+		    setVisible(true);
+		
 		}
 		
 		else if (modoDeJogo == 2) {
@@ -74,19 +104,12 @@ public class TelaJogo extends JFrame implements ActionListener{
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
-		    this.tela = new GerarChar(tabuleiro.getMatriz(), 600, 80, tabuleiro);
+		    this.tela = new GerarChar(tabuleiro.getMatriz(), 500, 50, tabuleiro,this, this.jogador);
 		    add(tela, BorderLayout.CENTER);
 		    pack();
 		    setLocationRelativeTo(null);
 		    setVisible(true);
 			
-			add(voltar, BorderLayout.SOUTH);
-			voltar.setFont(fonteGeral);
-			voltar.setForeground(corTexto);
-			voltar.setBackground(corBotoes);
-		    
-		    botaoAjuda.addActionListener(this);
-			voltar.addActionListener(this);
 			
 		}
 		
@@ -97,50 +120,94 @@ public class TelaJogo extends JFrame implements ActionListener{
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setTitle("PUZZLE-N");
 			setResizable(false);
-			this.telaImg = new GerarImg(tabuleiro.getMatriz(), 600, 80, tabuleiro);
+			this.telaImg = new GerarImg(tabuleiro.getMatriz(), 500, 50, tabuleiro, this, this.jogador);
 		    add(telaImg, BorderLayout.CENTER);
 			pack();
 			setLocationRelativeTo(null);
 			setVisible(true);
-				    
 			
-			add(botaoAjuda, BorderLayout.NORTH);
-			botaoAjuda.setFont(fonteGeral);
-			botaoAjuda.setForeground(corTexto);
+			JPanel botoes = new JPanel();
+		    add(botoes,BorderLayout.SOUTH);
+		    botoes.setLayout(new BorderLayout());
+		    botoes.setBackground(corPlanoFundo);
+		    botoes.add(voltar,BorderLayout.SOUTH);
+		    botaoAjuda.setFont(fonteGeral);
+		    botaoAjuda.setVisible(true);
+		    botaoAjuda.setForeground(corTexto);
 			botaoAjuda.setBackground(corBotoes);
-					
-			add(voltar, BorderLayout.SOUTH);
-			voltar.setFont(fonteGeral);
-			voltar.setForeground(corTexto);
-			voltar.setBackground(corBotoes);
+		    botoes.add(botaoAjuda,BorderLayout.NORTH);
+		    botaoAjuda.addActionListener(this);
 				    
-			botaoAjuda.addActionListener(this);
-			voltar.addActionListener(this);	
 		}
 		
 		if (modoDeJogo == 4) {
 			
-		  	MexerPeca tabuleiro = new MexerPeca(this.tamanhoMatriz);
+		  	MexerMaluco tabuleiro = new MexerMaluco(this.tamanhoMatriz,1);
 		  
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
-		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 600, 80, tabuleiro, true);
+		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 500, 50, tabuleiro, this, this.jogador);
 		    add(tela, BorderLayout.CENTER);
 		    pack();
 		    setLocationRelativeTo(null);
 		    setVisible(true);
 		    
-			add(voltar, BorderLayout.SOUTH);
-			voltar.setFont(fonteGeral);
-			voltar.setForeground(corTexto);
-			voltar.setBackground(corBotoes);
-		    
-		    botaoAjuda.addActionListener(this);
-			voltar.addActionListener(this);
 			}
-				
 		
+		if (modoDeJogo == 5) {
+			
+			MexerMaluco tabuleiro = new MexerMaluco(this.tamanhoMatriz,2);
+			  
+		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		    setTitle("PUZZLE-N");
+		    setResizable(false);
+		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 500, 50, tabuleiro, this, this.jogador);
+		    add(tela, BorderLayout.CENTER);
+		    pack();
+		    setLocationRelativeTo(null);
+		    setVisible(true);
+			
+			
+			
+			
+			
+		}
+		if (modoDeJogo == 6) {
+			
+			MexerMaluco tabuleiro = new MexerMaluco(this.tamanhoMatriz,3);
+			  
+		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		    setTitle("PUZZLE-N");
+		    setResizable(false);
+		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 500, 50, tabuleiro, this, this.jogador);
+		    add(tela, BorderLayout.CENTER);
+		    pack();
+		    setLocationRelativeTo(null);
+		    setVisible(true);
+		    
+		}
+		
+	}
+	
+	public int getTempoJogador() {
+		return jogador.getTempo();
+	}
+	
+	public void setTempoJogador(int tempo) {
+		jogador.setTempo(tempo);
+	}
+	
+	public String getNomeJogador() {
+		return jogador.getNome();
+	}
+	
+	public void setMostrarTempo(String relogio) {
+		this.mostrarTempo.setText("  tempo - "+relogio);
+	}
+	
+	public String getMostrarTempo() {
+		return this.mostrarTempo.getText();
 	}
 	
 	
@@ -152,7 +219,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		
 		else if(e.getSource() == voltar) {
 			this.dispose();
-			new MenuPrincipal();
+			new MenuPrincipal(this.jogador.getNome());
 			
 		}
 	}

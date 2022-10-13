@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import fonte.Fonte;
 import jogando.TelaJogo;
@@ -84,6 +85,11 @@ public class AlterarDif extends JFrame implements ActionListener {
 		
 	}
 	
+	
+	
+	
+	
+	
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource()==dif1) {
@@ -111,7 +117,7 @@ public class AlterarDif extends JFrame implements ActionListener {
 	
 		else if(e.getSource()==voltar) {
 			this.dispose();
-			new MenuPrincipal();
+			new MenuPrincipal(menu.getJogador());
 		}
 			
 		
