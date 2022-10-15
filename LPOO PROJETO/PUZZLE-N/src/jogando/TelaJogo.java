@@ -30,7 +30,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 	private boolean maluco;
 	private Cronometro cronometro;
 	private JPanel info = new JPanel();
-	private JLabel mostrarTempo = new JLabel("  tempo - 0 m : 0 s");
+	private JLabel mostrarTempo = new JLabel("  tempo - 0 s");
 	private Jogador jogador;
 	private JLabel mostrarJogador = new JLabel();
 	private JButton botaoAjuda;
@@ -89,7 +89,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
-		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 500, 50, tabuleiro, this, this.jogador);
+		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 600, 50, tabuleiro, this, this.jogador);
 		    add(tela, BorderLayout.CENTER);
 		    pack();
 		    setLocationRelativeTo(null);
@@ -104,7 +104,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
-		    this.tela = new GerarChar(tabuleiro.getMatriz(), 500, 50, tabuleiro,this, this.jogador);
+		    this.tela = new GerarChar(tabuleiro.getMatriz(), 600, 50, tabuleiro,this, this.jogador);
 		    add(tela, BorderLayout.CENTER);
 		    pack();
 		    setLocationRelativeTo(null);
@@ -114,13 +114,13 @@ public class TelaJogo extends JFrame implements ActionListener{
 		}
 		
 		else if (modoDeJogo == 3) {
-	
+			
 			MexerPeca tabuleiro = new MexerPeca(this.tamanhoMatriz);
 			
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setTitle("PUZZLE-N");
 			setResizable(false);
-			this.telaImg = new GerarImg(tabuleiro.getMatriz(), 500, 50, tabuleiro, this, this.jogador);
+			this.telaImg = new GerarImg(tabuleiro.getMatriz(), 600, 50, tabuleiro, this, this.jogador);
 		    add(telaImg, BorderLayout.CENTER);
 			pack();
 			setLocationRelativeTo(null);
@@ -130,14 +130,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		    add(botoes,BorderLayout.SOUTH);
 		    botoes.setLayout(new BorderLayout());
 		    botoes.setBackground(corPlanoFundo);
-		    botoes.add(voltar,BorderLayout.SOUTH);
-		    botaoAjuda.setFont(fonteGeral);
-		    botaoAjuda.setVisible(true);
-		    botaoAjuda.setForeground(corTexto);
-			botaoAjuda.setBackground(corBotoes);
-		    botoes.add(botaoAjuda,BorderLayout.NORTH);
-		    botaoAjuda.addActionListener(this);
-				    
+		    botoes.add(voltar,BorderLayout.SOUTH);		    
 		}
 		
 		if (modoDeJogo == 4) {
@@ -147,7 +140,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
-		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 500, 50, tabuleiro, this, this.jogador);
+		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 600, 50, tabuleiro, this, this.jogador);
 		    add(tela, BorderLayout.CENTER);
 		    pack();
 		    setLocationRelativeTo(null);
@@ -162,7 +155,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
-		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 500, 50, tabuleiro, this, this.jogador);
+		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 600, 50, tabuleiro, this, this.jogador);
 		    add(tela, BorderLayout.CENTER);
 		    pack();
 		    setLocationRelativeTo(null);
@@ -180,7 +173,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
-		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 500, 50, tabuleiro, this, this.jogador);
+		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 600, 50, tabuleiro, this, this.jogador);
 		    add(tela, BorderLayout.CENTER);
 		    pack();
 		    setLocationRelativeTo(null);
@@ -192,6 +185,10 @@ public class TelaJogo extends JFrame implements ActionListener{
 	
 	public int getTempoJogador() {
 		return jogador.getTempo();
+	}
+	
+	public int getDificuldade() {
+		return this.tamanhoMatriz - 1;
 	}
 	
 	public void setTempoJogador(int tempo) {

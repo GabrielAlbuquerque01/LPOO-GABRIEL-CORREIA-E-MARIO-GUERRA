@@ -5,6 +5,11 @@ public class Jogador {
 		private String nome;
 		private int tempo;
 		
+		public Jogador(String nome, int tempo) {
+			this.nome = nome;
+			this.tempo = tempo;
+		}
+		
 		public Jogador(String nome) {
 			this.nome = nome;
 			this.tempo = 0;

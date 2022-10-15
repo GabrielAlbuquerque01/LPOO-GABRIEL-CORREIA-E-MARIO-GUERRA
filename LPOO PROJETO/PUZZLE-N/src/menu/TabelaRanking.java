@@ -1,8 +1,13 @@
 package menu;
 
-import static menu.ConstantesGraficas.*;
+import static menu.ConstantesGraficas.corBotoes;
+import static menu.ConstantesGraficas.corPlanoFundo;
+import static menu.ConstantesGraficas.corTexto;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -12,21 +17,24 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import fonte.Fonte;
-import jogando.TelaJogo;
+import jogando.Ranking;
 
-public class Ranking extends JFrame implements ActionListener{
+public class TabelaRanking extends JFrame implements ActionListener{
 	
-	private JLabel descricao = new JLabel("RANKING DE JOGADORES");
-	private JButton voltar = new JButton("Voltar");
+	int difRanking;
 	private MenuPrincipal menu;
+	private JButton voltar = new JButton("Voltar");
 	private Fonte fonte = new Fonte();
 	private Font fonteGeral = fonte.getFont();
+	private Ranking ranking;
 	
-	public Ranking(MenuPrincipal menu) {
+	public TabelaRanking(MenuPrincipal menu, int difRanking){
 		
 		this.menu = menu;
+		this.difRanking = difRanking;
 		
 		setTitle("Menu principal");
 		setSize(600,600);
@@ -43,28 +51,32 @@ public class Ranking extends JFrame implements ActionListener{
             e.printStackTrace();
         }
 		
+		this.ranking = new Ranking();
+		this.ranking.ordenaRanking(this.difRanking);
 		
-		add(descricao);
-		descricao.setBounds(140,80,400,100);
-		descricao.setFont(fonteGeral);
-		descricao.setForeground(corTexto);
+		JPanel meio = new JPanel();
+		this.ranking.showTable(meio, this.difRanking);
+        meio.setLayout(new GridLayout(1,1));
+        meio.setBackground(new Color(0, 0, 0));
+        
+        
+        add(meio);
 		
 		add(voltar);
-		voltar.setBounds(160,350,250,50);
+		voltar.setBounds(160,480,250,50);
 		voltar.setFont(fonteGeral);
 		voltar.setForeground(corTexto);
 		voltar.setBackground(corBotoes);
 		
 		voltar.addActionListener(this);
-		
 	}
 	
+
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==voltar) {
 			this.dispose();
 			new MenuPrincipal(menu.getJogador());
 		}
 	}
+	
 }
-		
-		

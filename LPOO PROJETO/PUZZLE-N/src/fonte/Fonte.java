@@ -24,4 +24,20 @@ public class Fonte {
 		return font;
 	}
 	
+	public Font getFont(int tamanho) {
+		if (font == null) {
+			try {
+				InputStream arquivoTTF = getClass().getResourceAsStream("Skygraze.otf");
+				font = Font.createFont(Font.TRUETYPE_FONT, arquivoTTF).deriveFont(15f);
+				GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+				ge.registerFont(font);
+			} catch(Exception e) {
+				e.printStackTrace();
+				System.err.println("fonte não carregada. Usando fonte serif.");
+				font = new Font("serif", Font.PLAIN, 24);
+			}
+		}
+		return font;
+	}
+	
 }

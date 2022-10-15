@@ -72,7 +72,7 @@ public class AlterarDif extends JFrame implements ActionListener {
 		dif3.setBackground(corBotoes);
 		
 		add(voltar);
-		voltar.setBounds(160,350,250,50);
+		voltar.setBounds(160,450,250,50);
 		voltar.setFont(fonteGeral);
 		voltar.setForeground(corTexto);
 		voltar.setBackground(corBotoes);

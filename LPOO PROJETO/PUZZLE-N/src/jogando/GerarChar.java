@@ -124,13 +124,13 @@ public class GerarChar extends JPanel{
 	      
 	   // checa a peça vazia para determinar se o jogo terminou
 	      if(tabuleiro.getListaPecas()[i].equals(' ')) {
-	        if (fimDeJogo) { 
+	        if (tabuleiro.terminaJogo()) { 
 	          g.setColor(Color.white);
 	          desenhaNumeros(g, "\u2715", x, y);
 	        }
 	        continue;
 	      }
-	      
+
 	      // colocação das pecas
 	      if(tabuleiro.getListaPecas()[i].equals(tabuleiro.getListaCorreta()[i])) {
 	    	  g.setColor(COR_PECA_CORRETA); //destaca as pecas na posição correta
@@ -149,9 +149,10 @@ public class GerarChar extends JPanel{
 
 	
 	  private void mensagemFimJogo() {
-	    if (fimDeJogo) {
+	    if (tabuleiro.terminaJogo()) {
 	    	this.tela.dispose();
-	    	new FimDeJogo(this.tela.getNomeJogador(),this.tela.getTempoJogador());
+	    	FimDeJogo fimJogo = new FimDeJogo(this.tela.getNomeJogador(),this.tela.getTempoJogador(), this.tela.getDificuldade());
+	    	new Ranking(fimJogo);
 	    }
 	  }
 	  

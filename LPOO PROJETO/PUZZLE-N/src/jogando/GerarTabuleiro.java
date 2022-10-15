@@ -158,7 +158,8 @@ public class GerarTabuleiro extends JPanel{
 	  private void mensagemFimJogo() {
 	    if (fimDeJogo) {
 	    	this.tela.dispose();
-	    	new FimDeJogo(this.tela.getNomeJogador(),this.tela.getTempoJogador());
+	    	FimDeJogo fimJogo = new FimDeJogo(this.tela.getNomeJogador(),this.tela.getTempoJogador(), this.tela.getDificuldade());
+	    	new Ranking(fimJogo);
 	    }
 	  }
 	  

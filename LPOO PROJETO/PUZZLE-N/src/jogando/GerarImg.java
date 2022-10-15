@@ -1,7 +1,8 @@
 package jogando;
 
-import static menu.ConstantesGraficas.corPlanoFundo;
+import static menu.ConstantesGraficas.*;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -9,6 +10,8 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -17,13 +20,16 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import fonte.Fonte;
 import logicaJogo.*;
 import menu.Jogador;
 
 
-public class GerarImg extends JPanel{
+public class GerarImg extends JPanel implements ActionListener{
 	
 	private MexerPeca tabuleiro;
 	private static final Color COR_PECA = new Color(50, 0, 50);
@@ -36,10 +42,15 @@ public class GerarImg extends JPanel{
 	private boolean fimDeJogo;
 	private Jogador jogador;
 	private TelaJogo tela;
+	private JButton ajuda = new JButton("AJUDA");
+	private boolean Ajuda;
+	private Fonte fonte = new Fonte();
+	private Font fonteGeral = fonte.getFont();
 	
 	
 	public GerarImg(int tam, int dim, int mar, MexerPeca tab,TelaJogo tela, Jogador jogador) {
 		
+		this.Ajuda = false;
 		this.fimDeJogo = false;
 		this.jogador = jogador;
 		this.tela = tela;
@@ -47,7 +58,13 @@ public class GerarImg extends JPanel{
 		this.margem = mar;
 		this.dimensao = dim;
 		this.tabuleiro = tab;
-	
+		
+		add(ajuda);
+		ajuda.setBounds(0,30,100,50);
+		ajuda.setFont(fonteGeral);
+		ajuda.setForeground(corTexto);
+		ajuda.setBackground(corBotoes);
+		ajuda.addActionListener(this);
 		
 	    this.tamanhoMatriz = (dim - 2 * this.margem);
 	    this.tamanhoPeca = this.tamanhoMatriz / this.tamanho;
@@ -117,7 +134,8 @@ public class GerarImg extends JPanel{
 		tabuleiro.preencheMatriz();
 	}
 	
-	private void desenhaMatriz(Graphics2D g) {
+	public void desenhaMatriz(Graphics2D g) {
+		
 		BufferedImage imagem = null;
 		String numImg;
 		String pasta;
@@ -170,16 +188,20 @@ public class GerarImg extends JPanel{
 			}
 	      
 	      g.drawImage(imagem, x, y, tamanhoPeca, tamanhoPeca, null);
-	      //desenhaNumeros(g, String.valueOf(tabuleiro.getListaPecas()[i]), x , y);
+	      
+	      if(this.Ajuda == true) {
+	    	  desenhaNumeros(g, String.valueOf(tabuleiro.getListaPecas()[i]), x , y);
+	      }
 	    }
 	  }
 
 	
 	  private void mensagemFimJogo() {
-		  if (fimDeJogo) {
-		    	this.tela.dispose();
-		    	new FimDeJogo(this.tela.getNomeJogador(),this.tela.getTempoJogador());
-		    }
+	    if (fimDeJogo) {
+	    	this.tela.dispose();
+	    	FimDeJogo fimJogo = new FimDeJogo(this.tela.getNomeJogador(),this.tela.getTempoJogador(), this.tela.getDificuldade());
+	    	new Ranking(fimJogo);
+	    }
 	  }
 	  
 	  
@@ -191,6 +213,10 @@ public class GerarImg extends JPanel{
 	        y + (ascendente + (tamanhoPeca - (ascendente + descendente)) / 2));
 	  }
 	  
+	  public void setAjuda(boolean ajuda) {
+		  this.Ajuda = ajuda;
+	  }
+	  
 	  
 	  @Override
 	  protected void paintComponent(Graphics g) {
@@ -200,4 +226,26 @@ public class GerarImg extends JPanel{
 	    desenhaMatriz(g2D);
 	    mensagemFimJogo();
 	  }
+
+	  
+	  public boolean getAjuda() {
+		  return this.Ajuda;
+	  }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getSource()==ajuda) {
+			
+			if(this.getAjuda()==false) {
+				this.setAjuda(true);
+				repaint();
+			}
+			else if(this.getAjuda()==true) {
+					this.setAjuda(false);
+					repaint();
+			}
+		}
+	}
+	
 }

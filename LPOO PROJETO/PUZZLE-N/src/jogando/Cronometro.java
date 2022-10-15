@@ -24,11 +24,7 @@ public class Cronometro extends Thread{
 			}
 			this.segundos++;
 			telaJogo.setTempoJogador(this.segundos);
-			if(this.segundos>60) {
-				this.segundos = 0;
-				this.minutos++;
-			}
-			this.relogio = this.minutos+" m : "+this.segundos+" s";
+			this.relogio = this.segundos+" s";
 			
 			telaJogo.setMostrarTempo(this.relogio);
 		}

@@ -3,15 +3,20 @@ package jogando;
 import static menu.ConstantesGraficas.*;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import fonte.Fonte;
 import menu.Logar;
 import menu.MenuPrincipal;
 
@@ -19,18 +24,22 @@ public class FimDeJogo extends JFrame implements ActionListener{
 	
 	private String nomeRanking;
 	private int tempoRanking;
+	private int difRanking;
 	private MenuPrincipal menu;
 	private JLabel mensagem = new JLabel("Fim de jogo");
 	private JLabel mostrarTempo = new JLabel("Seu tempo:");
 	private JButton voltar = new JButton("início");
 	private JButton sair = new JButton("Sair");
+	private Fonte fonte = new Fonte();
+	private Font fonteGeral = fonte.getFont();
 	
-	public FimDeJogo(String nome, int tempo) {
+	public FimDeJogo(String nome, int tempo, int dificuldade) {
 		
 	this.nomeRanking = nome;
 	this.tempoRanking = tempo;
+	this.difRanking = dificuldade;
 	
-	setSize(600,300);
+	setSize(600,400);
 	setResizable(false);
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	setLocationRelativeTo(null);
@@ -38,9 +47,10 @@ public class FimDeJogo extends JFrame implements ActionListener{
 	setLayout(new BorderLayout());
 	getContentPane().setBackground(corPlanoFundo);
 	
+	
 	add(mensagem,BorderLayout.NORTH);
 	mensagem.setHorizontalAlignment(SwingConstants.CENTER);
-	mensagem.setText("Game Over! Parabéns, "+this.getNomeRanking()+".");
+	mensagem.setText("Game Over! Parabéns, "+ this.getNomeRanking() + ".");
 	mensagem.setFont(fonteGeral);
 	mensagem.setBackground(corPlanoFundo);
 	mensagem.setForeground(corTexto);
@@ -81,6 +91,10 @@ public class FimDeJogo extends JFrame implements ActionListener{
 	
 	public int getTempoRanking() {
 		return this.tempoRanking;
+	}
+	
+	public int getDificuldade() {
+		return this.difRanking;
 	}
 	
 	public void actionPerformed(ActionEvent e) {

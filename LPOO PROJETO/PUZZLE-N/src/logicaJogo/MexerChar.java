@@ -89,17 +89,14 @@ public class MexerChar extends TabChar {
 	
 	public boolean terminaJogo() {
 		int contador = 0;
-		Character[][] matrizCorreta = super.getMatrizCorreta();
-		for(int i = 0; i < super.getMatriz(); i++) {
-			for(int k = 0; k < super.getMatriz(); k++) {
-				if(this.matrizPecas != null) {
-					if(this.matrizPecas[i][k].equals(matrizCorreta[i][k])) {
-						contador++;
-					}
-				}
+	
+		for(int l = 0; l < (super.getMatriz()*super.getMatriz()) - 1; l++) {
+			if(super.getListaPecas()[l].equals(super.getListaCorreta()[l])) {
+				contador++;
 			}
 		}
-		if(contador == super.getMatriz()*super.getMatriz()) {
+		
+		if(contador == super.getMatriz()*super.getMatriz() - 1) {
 			return true;
 		}
 		else {
