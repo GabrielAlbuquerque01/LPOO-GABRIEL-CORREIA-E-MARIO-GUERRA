@@ -14,10 +14,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import fonte.Fonte;
 import jogando.acoes.Cronometro;
+import jogando.acoes.SalvaJogo;
 import menu.Jogador;
 import menu.MenuPrincipal;
 import logicaJogo.MexerChar;
@@ -28,19 +30,17 @@ public class TelaJogo extends JFrame implements ActionListener{
 	
 	private int tamanhoMatriz;
 	private int modoDeJogo;
-	private boolean maluco;
 	private Cronometro cronometro;
 	private JPanel info = new JPanel();
 	private JLabel mostrarTempo = new JLabel("  tempo - 0 s");
 	private Jogador jogador;
 	private JLabel mostrarJogador = new JLabel();
-	private JButton botaoAjuda;
 	private JButton voltar;
-	private JButton salvar;
 	private JPanel tela;
 	private GerarImg telaImg;
 	private Fonte fonte = new Fonte();
 	private Font fonteGeral = fonte.getFont();
+	private Object tabuleiro;
 	
 	public TelaJogo(int tamanhoMatriz, int modoDeJogo, Jogador jogador) {
 		
@@ -48,7 +48,6 @@ public class TelaJogo extends JFrame implements ActionListener{
 		this.jogador = jogador;
 		this.modoDeJogo = modoDeJogo;
 		this.tamanhoMatriz = tamanhoMatriz;
-		this.botaoAjuda = new JButton("Ajuda");
 		this.voltar = new JButton("Voltar para o menu");
 		
 		
@@ -88,7 +87,6 @@ public class TelaJogo extends JFrame implements ActionListener{
 		if (modoDeJogo == 1) {
 		
 		  	MexerPeca tabuleiro = new MexerPeca(this.tamanhoMatriz);
-		  
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
@@ -97,13 +95,11 @@ public class TelaJogo extends JFrame implements ActionListener{
 		    pack();
 		    setLocationRelativeTo(null);
 		    setVisible(true);
-		
 		}
 		
 		else if (modoDeJogo == 2) {
 			
-			MexerChar tabuleiro = new MexerChar(this.tamanhoMatriz);
-			  
+			MexerChar tabuleiro = new MexerChar(this.tamanhoMatriz);  
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
@@ -119,7 +115,6 @@ public class TelaJogo extends JFrame implements ActionListener{
 		else if (modoDeJogo == 3) {
 			
 			MexerPeca tabuleiro = new MexerPeca(this.tamanhoMatriz);
-			
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setTitle("PUZZLE-N");
 			setResizable(false);
@@ -139,7 +134,6 @@ public class TelaJogo extends JFrame implements ActionListener{
 		if (modoDeJogo == 4) {
 			
 		  	MexerMaluco tabuleiro = new MexerMaluco(this.tamanhoMatriz,1);
-		  
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
@@ -154,7 +148,6 @@ public class TelaJogo extends JFrame implements ActionListener{
 		if (modoDeJogo == 5) {
 			
 			MexerMaluco tabuleiro = new MexerMaluco(this.tamanhoMatriz,2);
-			  
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
@@ -163,16 +156,10 @@ public class TelaJogo extends JFrame implements ActionListener{
 		    pack();
 		    setLocationRelativeTo(null);
 		    setVisible(true);
-			
-			
-			
-			
-			
 		}
 		if (modoDeJogo == 6) {
 			
-			MexerMaluco tabuleiro = new MexerMaluco(this.tamanhoMatriz,3);
-			  
+			MexerMaluco tabuleiro = new MexerMaluco(this.tamanhoMatriz,3); 
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
@@ -212,15 +199,13 @@ public class TelaJogo extends JFrame implements ActionListener{
 	
 	
 	public void actionPerformed(ActionEvent e) {
-
-		if(e.getSource() == botaoAjuda) {
-
-		}
-		
-		else if(e.getSource() == voltar) {
+		if(e.getSource() == voltar) {
+			int resposta = JOptionPane.showConfirmDialog(null, "Deseja salvar o jogo?", "AVISO", JOptionPane.YES_NO_OPTION);
+			if(resposta == 0) {
+				new SalvaJogo(this.jogador,this.tamanhoMatriz - 1, this.modoDeJogo);
+			}
 			this.dispose();
 			new MenuPrincipal(this.jogador.getNome());
-			
 		}
 	}
 	

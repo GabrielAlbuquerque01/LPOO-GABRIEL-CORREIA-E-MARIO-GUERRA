@@ -2,7 +2,7 @@ package logicaJogo;
 
 import java.util.Random;
 
-public class MexerPeca  <T> extends TabNumero{
+public class MexerPeca extends TabNumero{
 	
 	private String vazio;
 	private String numero;

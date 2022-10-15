@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import jogando.acoes.FimDeJogo;
 import jogando.acoes.Ranking;
 import logicaJogo.MexerChar;
+import logicaJogo.MexerPeca;
 import menu.Jogador;
 
 public class GerarChar extends JPanel{

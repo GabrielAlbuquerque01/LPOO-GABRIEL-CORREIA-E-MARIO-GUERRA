@@ -197,7 +197,6 @@ public class GerarImg extends JPanel implements ActionListener{
 	      }
 	    }
 	  }
-
 	
 	  private void mensagemFimJogo() {
 	    if (fimDeJogo) {

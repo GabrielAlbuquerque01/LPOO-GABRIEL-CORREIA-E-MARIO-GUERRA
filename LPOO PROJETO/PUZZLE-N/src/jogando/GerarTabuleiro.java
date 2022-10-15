@@ -114,7 +114,6 @@ public class GerarTabuleiro extends JPanel{
 		return this.fimDeJogo;
 	}
 	
-	
 	private void novoJogo() {
 		fimDeJogo = false;
 		tabuleiro.preencheArray();
