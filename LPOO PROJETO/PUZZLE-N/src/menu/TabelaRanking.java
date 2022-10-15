@@ -20,7 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import fonte.Fonte;
-import jogando.Ranking;
+import jogando.acoes.Ranking;
 
 public class TabelaRanking extends JFrame implements ActionListener{
 	

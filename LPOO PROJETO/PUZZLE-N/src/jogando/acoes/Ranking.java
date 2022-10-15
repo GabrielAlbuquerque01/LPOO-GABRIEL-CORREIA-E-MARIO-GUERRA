@@ -1,4 +1,4 @@
-package jogando;
+package jogando.acoes;
 
 import java.awt.Color;
 import java.awt.Font;

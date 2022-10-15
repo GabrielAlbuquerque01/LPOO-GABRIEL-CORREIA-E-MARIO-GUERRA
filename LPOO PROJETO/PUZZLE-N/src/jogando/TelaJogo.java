@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import fonte.Fonte;
+import jogando.acoes.Cronometro;
 import menu.Jogador;
 import menu.MenuPrincipal;
 import logicaJogo.MexerChar;
@@ -35,6 +36,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 	private JLabel mostrarJogador = new JLabel();
 	private JButton botaoAjuda;
 	private JButton voltar;
+	private JButton salvar;
 	private JPanel tela;
 	private GerarImg telaImg;
 	private Fonte fonte = new Fonte();
@@ -48,6 +50,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		this.tamanhoMatriz = tamanhoMatriz;
 		this.botaoAjuda = new JButton("Ajuda");
 		this.voltar = new JButton("Voltar para o menu");
+		
 		
 		add(info,BorderLayout.NORTH);
 	    info.setLayout(new BorderLayout());
@@ -64,7 +67,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		mostrarTempo.setFont(fonteGeral);
 		mostrarTempo.setForeground(corTexto);
 		mostrarTempo.setVisible(true);
-		
+
 	    
 		add(voltar, BorderLayout.SOUTH);
 		voltar.setFont(fonteGeral);

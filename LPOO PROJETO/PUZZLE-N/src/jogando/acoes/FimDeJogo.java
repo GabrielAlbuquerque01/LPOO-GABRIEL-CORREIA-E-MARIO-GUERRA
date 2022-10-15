@@ -1,4 +1,4 @@
-package jogando;
+package jogando.acoes;
 
 import static menu.ConstantesGraficas.*;
 

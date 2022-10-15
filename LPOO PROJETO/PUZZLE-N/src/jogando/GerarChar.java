@@ -12,6 +12,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
 
+import jogando.acoes.FimDeJogo;
+import jogando.acoes.Ranking;
 import logicaJogo.MexerChar;
 import menu.Jogador;
 

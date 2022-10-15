@@ -22,9 +22,12 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import fonte.Fonte;
+import jogando.acoes.FimDeJogo;
+import jogando.acoes.Ranking;
 import logicaJogo.*;
 import menu.Jogador;
 

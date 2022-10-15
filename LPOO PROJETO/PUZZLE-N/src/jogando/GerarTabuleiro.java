@@ -19,6 +19,9 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import jogando.acoes.FimDeJogo;
+import jogando.acoes.Ranking;
 import logicaJogo.*;
 import menu.Jogador;
 import menu.MenuPrincipal;

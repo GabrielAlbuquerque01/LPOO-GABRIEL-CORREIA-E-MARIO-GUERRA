@@ -1,4 +1,6 @@
-package jogando;
+package jogando.acoes;
+
+import jogando.TelaJogo;
 
 public class Cronometro extends Thread{
 
