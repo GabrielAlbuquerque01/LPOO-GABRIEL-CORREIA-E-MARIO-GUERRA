@@ -40,7 +40,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 	private GerarImg telaImg;
 	private Fonte fonte = new Fonte();
 	private Font fonteGeral = fonte.getFont();
-	private Object tabuleiro;
+	private Object[] listaPecas;
 	
 	public TelaJogo(int tamanhoMatriz, int modoDeJogo, Jogador jogador) {
 		
@@ -95,6 +95,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		    pack();
 		    setLocationRelativeTo(null);
 		    setVisible(true);
+		    listaPecas = tabuleiro.getListaPecas();
 		}
 		
 		else if (modoDeJogo == 2) {
@@ -108,6 +109,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		    pack();
 		    setLocationRelativeTo(null);
 		    setVisible(true);
+		    listaPecas = tabuleiro.getListaPecas();
 			
 			
 		}
@@ -123,6 +125,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 			pack();
 			setLocationRelativeTo(null);
 			setVisible(true);
+			listaPecas = tabuleiro.getListaPecas();
 			
 			JPanel botoes = new JPanel();
 		    add(botoes,BorderLayout.SOUTH);
@@ -142,6 +145,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		    pack();
 		    setLocationRelativeTo(null);
 		    setVisible(true);
+		    listaPecas = tabuleiro.getListaPecas();
 		    
 			}
 		
@@ -156,6 +160,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		    pack();
 		    setLocationRelativeTo(null);
 		    setVisible(true);
+		    listaPecas = tabuleiro.getListaPecas();
 		}
 		if (modoDeJogo == 6) {
 			
@@ -168,6 +173,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		    pack();
 		    setLocationRelativeTo(null);
 		    setVisible(true);
+		    listaPecas = tabuleiro.getListaPecas();
 		    
 		}
 		
@@ -202,7 +208,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		if(e.getSource() == voltar) {
 			int resposta = JOptionPane.showConfirmDialog(null, "Deseja salvar o jogo?", "AVISO", JOptionPane.YES_NO_OPTION);
 			if(resposta == 0) {
-				new SalvaJogo(this.jogador,this.tamanhoMatriz - 1, this.modoDeJogo);
+				new SalvaJogo(this.jogador,this.tamanhoMatriz - 1, this.modoDeJogo, this.listaPecas);
 			}
 			this.dispose();
 			new MenuPrincipal(this.jogador.getNome());
