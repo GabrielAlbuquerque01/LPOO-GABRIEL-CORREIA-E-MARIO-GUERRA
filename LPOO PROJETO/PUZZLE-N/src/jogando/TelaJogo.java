@@ -40,10 +40,16 @@ public class TelaJogo extends JFrame implements ActionListener{
 	private GerarImg telaImg;
 	private Fonte fonte = new Fonte();
 	private Font fonteGeral = fonte.getFont();
+	private boolean salvo;
+	private String[] listaSalva;
+	private Character[] listaChar;
 	private Object[] listaPecas;
 	
-	public TelaJogo(int tamanhoMatriz, int modoDeJogo, Jogador jogador) {
+	public TelaJogo(int tamanhoMatriz, int modoDeJogo, Jogador jogador, boolean save, String[] listaS, Character[] listaC) {
 		
+		this.salvo = save;
+		this.listaSalva = listaS;
+		this.listaChar = listaC;
 		this.cronometro = new Cronometro(this);
 		this.jogador = jogador;
 		this.modoDeJogo = modoDeJogo;
@@ -87,6 +93,9 @@ public class TelaJogo extends JFrame implements ActionListener{
 		if (modoDeJogo == 1) {
 		
 		  	MexerPeca tabuleiro = new MexerPeca(this.tamanhoMatriz);
+		  	if(salvo==true) {
+		  		//tabuleiro.setLista(this.listaSalva);
+		  	}
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
@@ -100,7 +109,10 @@ public class TelaJogo extends JFrame implements ActionListener{
 		
 		else if (modoDeJogo == 2) {
 			
-			MexerChar tabuleiro = new MexerChar(this.tamanhoMatriz);  
+			MexerChar tabuleiro = new MexerChar(this.tamanhoMatriz);
+			if(salvo==true) {
+		  		tabuleiro.setLista(this.listaChar);
+		  	}
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);

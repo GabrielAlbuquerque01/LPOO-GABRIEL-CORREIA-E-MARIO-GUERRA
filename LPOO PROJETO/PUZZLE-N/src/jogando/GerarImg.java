@@ -132,8 +132,10 @@ public class GerarImg extends JPanel implements ActionListener{
 	
 	private void novoJogo() {
 		fimDeJogo = false;
-		tabuleiro.preencheArray();
-		tabuleiro.embaralhaArray();
+		if(tabuleiro.getListaPecas() == null) {
+			tabuleiro.preencheArray();
+			tabuleiro.embaralhaArray();
+		}
 		tabuleiro.preencheMatriz();
 	}
 	

@@ -20,6 +20,18 @@ public abstract class TabNumero implements Tabuleiro{
 		}
 	}
 	
+	public void setLista(String[] lista) {
+		this.listaPecas = lista;
+		String[][] matrizTemp = new String[this.matriz][this.matriz];
+		int contador = 0;
+		for(int i = 0; i < this.matriz; i++) {
+            for(int k = 0; k < this.matriz; k++) {
+                matrizTemp[i][k] = this.listaPecas[contador]; 
+                contador++;
+            }
+        }
+		this.setTabuleiro(matrizTemp);
+	}
 	
 	public int getMatriz() {//retorna o valor da dimensao da matriz
 		return this.matriz;
@@ -152,7 +164,7 @@ public abstract class TabNumero implements Tabuleiro{
 		for(int i = 0; i < this.matriz*this.matriz; i++) {
 			listaPecas[i] = String.valueOf(i + 1);
 		}
-		listaPecas[listaPecas.length - 1] = "  ";
+		listaPecas[listaPecas.length - 1] = "x";
 		
 		for(int i = 0; i < this.matriz; i++) {
             for(int k = 0; k < this.matriz; k++) {

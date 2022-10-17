@@ -16,6 +16,9 @@ public class TabChar implements Tabuleiro {
 		this.matriz = matriz;
 	}
 	
+	public void setLista(Character[] lista) {
+		this.listaPecas = lista;
+	}
 	
 	public void setMatriz(int matriz) {
 		if(matriz == 2 ||matriz == 3 || matriz == 4) {
