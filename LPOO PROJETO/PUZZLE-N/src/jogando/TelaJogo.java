@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -82,6 +84,23 @@ public class TelaJogo extends JFrame implements ActionListener{
 		voltar.addActionListener(this);
 		
 		cronometro.start();
+		
+		addWindowListener( new WindowListener()
+		{
+		    public void windowClosing( WindowEvent e )
+		    {
+		    	int resposta = JOptionPane.showConfirmDialog(null, "Deseja salvar o jogo?", "AVISO", JOptionPane.YES_NO_OPTION);
+				if(resposta == 0) {
+					new SalvaJogo(jogador,tamanhoMatriz - 1, modoDeJogo, listaPecas);
+				}
+		    }
+		    public void windowClosed( WindowEvent e ) {}
+		    public void windowOpened( WindowEvent e ) {}
+		    public void windowIconified( WindowEvent e ) {}
+		    public void windowDeiconified( WindowEvent e ) {}
+		    public void windowActivated( WindowEvent e ) {}
+		    public void windowDeactivated( WindowEvent e ) {}
+		} );
 		
 		pack();
 		
