@@ -7,8 +7,6 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -42,16 +40,10 @@ public class TelaJogo extends JFrame implements ActionListener{
 	private GerarImg telaImg;
 	private Fonte fonte = new Fonte();
 	private Font fonteGeral = fonte.getFont();
-	private boolean salvo;
 	private Object[] listaPecas;
-	private String[] listaSalva;
-	private Character[] listaChar;
 	
-	public TelaJogo(int tamanhoMatriz, int modoDeJogo, Jogador jogador, boolean save, String[] listaSalva, Character[] listaChar) {
+	public TelaJogo(int tamanhoMatriz, int modoDeJogo, Jogador jogador) {
 		
-		this.listaChar = listaChar;
-		this.listaSalva = listaSalva;
-		this.salvo = save;
 		this.cronometro = new Cronometro(this);
 		this.jogador = jogador;
 		this.modoDeJogo = modoDeJogo;
@@ -95,9 +87,6 @@ public class TelaJogo extends JFrame implements ActionListener{
 		if (modoDeJogo == 1) {
 		
 		  	MexerPeca tabuleiro = new MexerPeca(this.tamanhoMatriz);
-		  	if(this.salvo == true) {
-		  		tabuleiro.setLista(this.listaSalva);
-		  	}
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
@@ -111,10 +100,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		
 		else if (modoDeJogo == 2) {
 			
-			MexerChar tabuleiro = new MexerChar(this.tamanhoMatriz);
-			if(this.salvo == true) {
-		  		tabuleiro.setLista(this.listaChar);
-		  	}
+			MexerChar tabuleiro = new MexerChar(this.tamanhoMatriz);  
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
@@ -131,9 +117,6 @@ public class TelaJogo extends JFrame implements ActionListener{
 		else if (modoDeJogo == 3) {
 			
 			MexerPeca tabuleiro = new MexerPeca(this.tamanhoMatriz);
-			if(this.salvo == true) {
-		  		tabuleiro.setLista(this.listaSalva);
-		  	}
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setTitle("PUZZLE-N");
 			setResizable(false);
@@ -154,9 +137,6 @@ public class TelaJogo extends JFrame implements ActionListener{
 		if (modoDeJogo == 4) {
 			
 		  	MexerMaluco tabuleiro = new MexerMaluco(this.tamanhoMatriz,1);
-		  	if(this.salvo == true) {
-		  		tabuleiro.setLista(this.listaSalva);
-		  	}
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
@@ -172,9 +152,6 @@ public class TelaJogo extends JFrame implements ActionListener{
 		if (modoDeJogo == 5) {
 			
 			MexerMaluco tabuleiro = new MexerMaluco(this.tamanhoMatriz,2);
-			if(this.salvo == true) {
-				tabuleiro.setLista(this.listaSalva);
-		  	}
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
@@ -187,10 +164,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		}
 		if (modoDeJogo == 6) {
 			
-			MexerMaluco tabuleiro = new MexerMaluco(this.tamanhoMatriz,3);
-			if(this.salvo == true) {
-				tabuleiro.setLista(this.listaSalva);
-		  	}
+			MexerMaluco tabuleiro = new MexerMaluco(this.tamanhoMatriz,3); 
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);

@@ -109,10 +109,8 @@ public class GerarChar extends JPanel{
 	
 	private void novoJogo() {
 		fimDeJogo = false;
-		if(tabuleiro.getListaPecas() == null) {
-			tabuleiro.preencheArray();
-			tabuleiro.embaralhaArray();
-		}
+		tabuleiro.preencheArray();
+		tabuleiro.embaralhaArray();
 		tabuleiro.preencheMatriz();
 	}
 	

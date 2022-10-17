@@ -32,7 +32,7 @@ public class SalvaJogo {
 	        }
 	    try {
 	         writer = new BufferedWriter(new FileWriter("./src/JogosSalvos/JogoSalvo.txt", false));
-	         writer.write(this.jogador.getNome() + "," + this.difJogo + "," + this.modoJogo);
+	         writer.write(this.jogador.getNome() + "," + this.jogador.getTempo() + "," + this.difJogo + "," + this.modoJogo);
 	         for(int i = 0; i < this.listaPecas.length;i++) {
 	        	 writer.write("," +this.listaPecas[i]);
 	         }

@@ -13,9 +13,6 @@ public abstract class TabNumero implements Tabuleiro{
 		setMatriz(matriz);
 	}
 	
-	public void setLista(String[] lista) {
-		this.listaPecas = lista;
-	}
 	
 	public void setMatriz(int matriz) { //armazena o valor da dimensao da matriz (se é 2x2, 3x3 ou 4x4)
 		if(matriz == 2 ||matriz == 3 || matriz == 4) {
