@@ -35,6 +35,9 @@ public class MexerPeca extends TabNumero{
 		return this.linha;
 	}
 	
+	public void setLista(String[] lista) {
+		super.setLista(lista);
+	}
 	
 	public void achaVazio() { //método para achar o espaço vazio e usá-lo na movimentação
 		this.matrizPecas = super.getTabuleiro();

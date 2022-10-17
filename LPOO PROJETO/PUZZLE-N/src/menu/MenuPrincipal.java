@@ -17,11 +17,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import fonte.Fonte;
 import jogando.TelaJogo;
+import jogando.acoes.AbreSave;
 
 public class MenuPrincipal extends JFrame implements ActionListener {
 
@@ -39,6 +41,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		private JButton alterarModo = new JButton("modo");
 		private Fonte fonte = new Fonte();
 		private Font fonteGeral = fonte.getFont();
+		private File saveGame;
 		
 	public MenuPrincipal(String NomeJogador) {
 		
@@ -190,9 +193,25 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource()==jogar) {
-			this.dispose();
-			TelaJogo jogando = new TelaJogo(this.dif, this.modo,this.jogador);
-			jogando.jogando();
+			this.saveGame = new File("./src/JogosSalvos/JogoSalvo.txt");
+			if(this.saveGame.isFile()) {
+				int resposta =  JOptionPane.showConfirmDialog(null, "Gostaria de abrir o jogo salvo?", "Jogo salvo", JOptionPane.YES_NO_OPTION);
+				if(resposta == 0) {
+					this.dispose();
+					new AbreSave(this.jogador);
+				}
+				else {
+					this.saveGame.delete();
+					this.dispose();
+					TelaJogo jogando = new TelaJogo(this.dif, this.modo,this.jogador, false, null, null);
+					jogando.jogando();
+				}
+			}
+			else {
+				this.dispose();
+				TelaJogo jogando = new TelaJogo(this.dif, this.modo,this.jogador, false, null, null);
+				jogando.jogando();
+			}
 		}
 		
 		else if(e.getSource()==alterarDif) {
