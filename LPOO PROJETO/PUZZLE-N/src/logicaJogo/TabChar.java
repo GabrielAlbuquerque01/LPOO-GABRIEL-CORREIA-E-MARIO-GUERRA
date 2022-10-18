@@ -118,7 +118,7 @@ public class TabChar implements Tabuleiro {
         	this.listaPecas[i]= (char)x;
         	
         }
-        this.listaPecas[listaPecas.length-1]=' '; //???????
+        this.listaPecas[listaPecas.length-1]=' '; 
         }
 		
 		

@@ -1,7 +1,4 @@
 package jogando;
-
-import static menu.ConstantesGraficas.corPlanoFundo;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -11,20 +8,10 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import jogando.acoes.FimDeJogo;
-import jogando.acoes.Ranking;
 import logicaJogo.*;
 import menu.Jogador;
-import menu.MenuPrincipal;
+import saves.Ranking;
 
 public class GerarTabuleiro extends JPanel{
 	
@@ -115,10 +102,12 @@ public class GerarTabuleiro extends JPanel{
 	}
 	
 	private void novoJogo() {
-		fimDeJogo = false;
+		
+		fimDeJogo = false;		
 		tabuleiro.preencheArray();
-		tabuleiro.embaralhaArray();
+		tabuleiro.embaralhaArray();		
 		tabuleiro.preencheMatriz();
+		
 	}
 	
 	

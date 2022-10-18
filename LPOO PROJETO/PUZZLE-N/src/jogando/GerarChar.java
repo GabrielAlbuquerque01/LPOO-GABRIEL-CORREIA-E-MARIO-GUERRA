@@ -9,14 +9,10 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.JPanel;
-
-import jogando.acoes.FimDeJogo;
-import jogando.acoes.Ranking;
 import logicaJogo.MexerChar;
-import logicaJogo.MexerPeca;
 import menu.Jogador;
+import saves.Ranking;
 
 public class GerarChar extends JPanel{
 	
@@ -49,10 +45,7 @@ public class GerarChar extends JPanel{
 	    setBackground(Color.BLACK);
 	    setForeground(COR_PECA);
 	    setFont(new Font("SansSerif", Font.BOLD, 60));
-	  
-	    
-	 
-	    //comunicação com os cliques do usuário
+	  	   
 	    addMouseListener(new MouseAdapter() {
 	        @Override
 	        public void mousePressed(MouseEvent e) {
@@ -61,20 +54,16 @@ public class GerarChar extends JPanel{
 	            novoJogo();
 	            
 	          } else {
-	        	  
-	            // posição do clique
+	        	              
 	            int ex = e.getX() - margem;
 	            int ey = e.getY() - margem;
-	            
-	            // descobre se foi clicado
+	            	        
 	            if (ex < 0 || ex > tamanhoMatriz  || ey < 0  || ey > tamanhoMatriz)
 	              return;
-	            
-	            // posição da peça clicada
+	            	           
 	            int yClique = ex / tamanhoPeca;
 	            int xClique = ey / tamanhoPeca;
-	            
-	            // posição da célula vazia
+	            	            
 	            int yVazio = tabuleiro.getVazio() % tamanho;
 	            int xVazio = tabuleiro.getVazio() / tamanho;
 	            
@@ -95,8 +84,6 @@ public class GerarChar extends JPanel{
 	            fimDeJogo = tabuleiro.terminaJogo();
 	            
 	          }
-	          
-	          // recoloca o painel na tela
 	          repaint();
 	        }
 	      });
@@ -120,25 +107,24 @@ public class GerarChar extends JPanel{
 	private void desenhaMatriz(Graphics2D g) {
 		
 	    for (int i = 0; i < tabuleiro.getListaPecas().length; i++) {
-	      // conversao do array 1d em 2d
+	      
 	      int r = i / tamanho;
 	      int c = i % tamanho;
-	      // conversao realizada na interface
 	      int x = margem + c * tamanhoPeca;
 	      int y = margem + r * tamanhoPeca;
 	      
-	   // checa a peça vazia para determinar se o jogo terminou
+	      
 	      if(tabuleiro.getListaPecas()[i].equals(' ')) {
 	        if (tabuleiro.terminaJogo()) { 
 	          g.setColor(Color.white);
-	          desenhaNumeros(g, "\u2715", x, y);
+	          desenhaChar(g, "\u2715", x, y);
 	        }
 	        continue;
 	      }
 
-	      // colocação das pecas
+	      
 	      if(tabuleiro.getListaPecas()[i].equals(tabuleiro.getListaCorreta()[i])) {
-	    	  g.setColor(COR_PECA_CORRETA); //destaca as pecas na posição correta
+	    	  g.setColor(COR_PECA_CORRETA); 
 	      }
 	      else {
 	    	  g.setColor(getForeground());
@@ -148,7 +134,7 @@ public class GerarChar extends JPanel{
 	      g.drawRoundRect(x, y, tamanhoPeca, tamanhoPeca, 80, 80);
 	      g.setColor(Color.WHITE);
 	      
-	      desenhaNumeros(g, String.valueOf(tabuleiro.getListaPecas()[i]), x , y);
+	      desenhaChar(g, String.valueOf(tabuleiro.getListaPecas()[i]), x , y);
 	    }
 	  }
 
@@ -162,7 +148,7 @@ public class GerarChar extends JPanel{
 	  }
 	  
 	  
-	  private void desenhaNumeros(Graphics2D g, String s, int x, int y) {
+	  private void desenhaChar(Graphics2D g, String s, int x, int y) {
 	    FontMetrics fm = g.getFontMetrics();
 	    int ascendente = fm.getAscent();
 	    int descendente = fm.getDescent();

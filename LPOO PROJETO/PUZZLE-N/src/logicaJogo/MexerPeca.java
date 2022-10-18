@@ -1,6 +1,5 @@
 package logicaJogo;
 
-import java.util.Random;
 
 public class MexerPeca extends TabNumero{
 	

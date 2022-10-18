@@ -2,28 +2,20 @@ package jogando;
 
 import static menu.ConstantesGraficas.*;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import fonte.Fonte;
-import jogando.acoes.Cronometro;
-import jogando.acoes.SalvaJogo;
 import menu.Jogador;
 import menu.MenuPrincipal;
+import saves.SalvaJogo;
 import logicaJogo.MexerChar;
 import logicaJogo.MexerMaluco;
 import logicaJogo.MexerPeca;
@@ -43,14 +35,12 @@ public class TelaJogo extends JFrame implements ActionListener{
 	private Fonte fonte = new Fonte();
 	private Font fonteGeral = fonte.getFont();
 	private boolean salvo;
-	private String[] listaSalva;
 	private Character[] listaChar;
 	private Object[] listaPecas;
 	
-	public TelaJogo(int tamanhoMatriz, int modoDeJogo, Jogador jogador, boolean save, String[] listaS, Character[] listaC) {
+	public TelaJogo(int tamanhoMatriz, int modoDeJogo, Jogador jogador, boolean save, Character[] listaC) {
 		
-		this.salvo = save;
-		this.listaSalva = listaS;
+		this.salvo = save;		
 		this.listaChar = listaC;
 		this.cronometro = new Cronometro(this);
 		this.jogador = jogador;
@@ -111,14 +101,11 @@ public class TelaJogo extends JFrame implements ActionListener{
 		
 		if (modoDeJogo == 1) {
 		
-		  	MexerPeca tabuleiro = new MexerPeca(this.tamanhoMatriz);
-		  	if(salvo==true) {
-		  		//tabuleiro.setLista(this.listaSalva);
-		  	}
+		  	MexerPeca tabuleiro = new MexerPeca(this.tamanhoMatriz);		  	
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
-		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 600, 50, tabuleiro, this, this.jogador);
+		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 550, 50, tabuleiro, this, this.jogador);
 		    add(tela, BorderLayout.CENTER);
 		    pack();
 		    setLocationRelativeTo(null);
@@ -135,7 +122,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
-		    this.tela = new GerarChar(tabuleiro.getMatriz(), 600, 50, tabuleiro,this, this.jogador);
+		    this.tela = new GerarChar(tabuleiro.getMatriz(), 550, 50, tabuleiro,this, this.jogador);
 		    add(tela, BorderLayout.CENTER);
 		    pack();
 		    setLocationRelativeTo(null);
@@ -151,7 +138,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setTitle("PUZZLE-N");
 			setResizable(false);
-			this.telaImg = new GerarImg(tabuleiro.getMatriz(), 600, 50, tabuleiro, this, this.jogador);
+			this.telaImg = new GerarImg(tabuleiro.getMatriz(), 550, 50, tabuleiro, this, this.jogador);
 		    add(telaImg, BorderLayout.CENTER);
 			pack();
 			setLocationRelativeTo(null);
@@ -171,7 +158,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
-		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 600, 50, tabuleiro, this, this.jogador);
+		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 550, 50, tabuleiro, this, this.jogador);
 		    add(tela, BorderLayout.CENTER);
 		    pack();
 		    setLocationRelativeTo(null);
@@ -186,7 +173,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
-		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 600, 50, tabuleiro, this, this.jogador);
+		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 550, 50, tabuleiro, this, this.jogador);
 		    add(tela, BorderLayout.CENTER);
 		    pack();
 		    setLocationRelativeTo(null);
@@ -199,7 +186,7 @@ public class TelaJogo extends JFrame implements ActionListener{
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setTitle("PUZZLE-N");
 		    setResizable(false);
-		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 600, 50, tabuleiro, this, this.jogador);
+		    this.tela = new GerarTabuleiro(tabuleiro.getMatriz(), 550, 50, tabuleiro, this, this.jogador);
 		    add(tela, BorderLayout.CENTER);
 		    pack();
 		    setLocationRelativeTo(null);

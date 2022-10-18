@@ -1,8 +1,6 @@
 package jogando;
 
 import static menu.ConstantesGraficas.*;
-
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -15,21 +13,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import fonte.Fonte;
-import jogando.acoes.FimDeJogo;
-import jogando.acoes.Ranking;
 import logicaJogo.*;
 import menu.Jogador;
+import saves.Ranking;
 
 
 public class GerarImg extends JPanel implements ActionListener{
@@ -78,8 +69,7 @@ public class GerarImg extends JPanel implements ActionListener{
 	    setFont(new Font("SansSerif", Font.BOLD, 60));
 	    
 	    fimDeJogo = false;
-	    
-	    //comunicação com os cliques do usuário
+	    	    
 	    addMouseListener(new MouseAdapter() {
 	        @Override
 	        public void mousePressed(MouseEvent e) {
@@ -88,19 +78,16 @@ public class GerarImg extends JPanel implements ActionListener{
 	            novoJogo();
 	            
 	          } else {
-	            // posição do clique
+	            
 	            int ex = e.getX() - margem;
 	            int ey = e.getY() - margem;
-	            
-	            // descobre se foi clicado
+	            	            
 	            if (ex < 0 || ex > tamanhoMatriz  || ey < 0  || ey > tamanhoMatriz)
 	              return;
-	            
-	            // posição da peça clicada
+	            	            
 	            int yClique = ex / tamanhoPeca;
 	            int xClique = ey / tamanhoPeca;
-	            
-	            // posição da célula vazia
+	            	            
 	            int yVazio = tabuleiro.getVazio() % tamanho;
 	            int xVazio = tabuleiro.getVazio() / tamanho;
 	            
@@ -120,9 +107,7 @@ public class GerarImg extends JPanel implements ActionListener{
 	            
 	            fimDeJogo = tabuleiro.terminaJogo();
 	            
-	          }
-	          
-	          // recoloca o painel na tela
+	          }	         	          
 	          repaint();
 	        }
 	      });
@@ -159,14 +144,12 @@ public class GerarImg extends JPanel implements ActionListener{
 		}
 		
 	    for (int i = 0; i < tabuleiro.getListaPecas().length; i++) {
-	      // conversao do array 1d em 2d
+	      
 	      int r = i / tamanho;
-	      int c = i % tamanho;
-	      // conversao realizada na interface
+	      int c = i % tamanho;	      
 	      int x = margem + c * tamanhoPeca;
 	      int y = margem + r * tamanhoPeca;
-	      
-	   // checa a peça vazia para determinar se o jogo terminou
+	      	   
 	      if(tabuleiro.getListaPecas()[i].equals("  ")) {
 	        if (fimDeJogo) { 
 	          g.setColor(Color.white);
@@ -174,10 +157,9 @@ public class GerarImg extends JPanel implements ActionListener{
 	        }
 	        continue;
 	      }
-	      
-	      // colocação das pecas
+	      	      
 	      if(tabuleiro.getListaPecas()[i].equals(tabuleiro.getListaCorreta()[i])) {
-	    	  g.setColor(COR_PECA_CORRETA); //destaca as pecas na posição correta
+	    	  g.setColor(COR_PECA_CORRETA); 
 	      }
 	      else {
 	    	  g.setColor(getForeground());
