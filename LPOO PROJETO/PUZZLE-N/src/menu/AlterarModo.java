@@ -3,13 +3,10 @@ package menu;
 import static menu.ConstantesGraficas.corBotoes;
 import static menu.ConstantesGraficas.corPlanoFundo;
 import static menu.ConstantesGraficas.corTexto;
-import static menu.ConstantesGraficas.fonteGeral;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;

@@ -1,29 +1,20 @@
 package menu;
 
 import static menu.ConstantesGraficas.*;
-
-import java.awt.BorderLayout;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import fonte.Fonte;
 import jogando.TelaJogo;
-import jogando.acoes.AbreSave;
+import saves.AbreSave;
 
 public class MenuPrincipal extends JFrame implements ActionListener {
 
@@ -203,13 +194,13 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 				else {
 					this.dispose();
 					this.save.delete();
-					TelaJogo jogando = new TelaJogo(this.dif, this.modo,this.jogador, false, null, null);
+					TelaJogo jogando = new TelaJogo(this.dif, this.modo,this.jogador, false,  null);
 					jogando.jogando();
 				}
 			}
 			else {
 				this.dispose();
-				TelaJogo jogando = new TelaJogo(this.dif, this.modo,this.jogador,false, null, null);
+				TelaJogo jogando = new TelaJogo(this.dif, this.modo,this.jogador,false, null);
 				jogando.jogando();
 			}
 			
@@ -237,11 +228,5 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		}
 		
 	}
-	
-	
-	/*public static void main (String[] args) {
-		new MenuPrincipal();
-	}*/
-	
-	
+		
 }

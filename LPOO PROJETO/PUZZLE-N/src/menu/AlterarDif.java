@@ -1,21 +1,16 @@
 package menu;
 
 import static menu.ConstantesGraficas.*;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import fonte.Fonte;
-import jogando.TelaJogo;
 
 public class AlterarDif extends JFrame implements ActionListener {
 	

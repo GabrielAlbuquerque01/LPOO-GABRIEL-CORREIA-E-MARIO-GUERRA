@@ -1,21 +1,16 @@
 package menu;
 
 import static menu.ConstantesGraficas.*;
-
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 import fonte.Fonte;
 
 public class Logar extends JFrame implements ActionListener{
