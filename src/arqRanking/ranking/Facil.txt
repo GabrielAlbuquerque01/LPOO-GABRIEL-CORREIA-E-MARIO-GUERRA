@@ -1,11 +1,4 @@
-adsasd,2
-ze,2
-caio,2
-elias,2
-joca,2
-tamara,2
-mario,3
-daniel,3
-almir,3
-tania,3
-mario,4
+fábio,1
+Caio,12
+gabriel,2
+zé vitor,42
